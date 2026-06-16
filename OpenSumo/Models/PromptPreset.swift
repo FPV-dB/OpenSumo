@@ -487,7 +487,17 @@ extension PromptPreset {
         hybridPreset("Ritual Desert Electronica", ["Ritual Desert Electronica", "Tribal Electronica", "Shamanic Psy"], ["Mystical", "Sacred", "Rural"], bpm: 100, key: "E", mode: "Phrygian dominant", vocalType: "Choir"),
         hybridPreset("Cathedral of Circuits", ["Cathedral of Circuits", "Sacred Ambient", "Generative Electronic"], ["Sacred", "Futuristic", "Ethereal"], bpm: 72, key: "G", mode: "Lydian", vocalType: "Choir"),
         hybridPreset("Forgotten Satellite Broadcast", ["Forgotten Satellite Broadcast", "Signalwave", "Space Ambient"], ["Cosmic", "Lonely", "Nostalgic"], bpm: 58, key: "B", mode: "Aeolian / natural minor", vocalType: "Instrumental"),
-        hybridPreset("Long Night Highway Electronica", ["Long Night Highway Electronica", "Atmospheric Downtempo", "Analog Synthwave"], ["Nocturnal", "Longing", "Urban"], bpm: 96, key: "E", mode: "Mixolydian", vocalType: "Female lead")
+        hybridPreset("Long Night Highway Electronica", ["Long Night Highway Electronica", "Atmospheric Downtempo", "Analog Synthwave"], ["Nocturnal", "Longing", "Urban"], bpm: 96, key: "E", mode: "Mixolydian", vocalType: "Female lead"),
+        hybridPreset("Cathedral at Midnight", ["Cathedral at Midnight", "Cathedral Choir", "Dark Neo-Classical"], ["Sacred", "Nocturnal", "Mystical"], bpm: 58, key: "D", mode: "Dorian", vocalType: "Choir"),
+        hybridPreset("Russian Orthodox Winter Choir", ["Russian Orthodox Winter Choir", "Russian Orthodox Choir", "Russian Sacred Choir"], ["Winter", "Sacred", "Solemn"], bpm: 52, key: "B", mode: "Aeolian / natural minor", vocalType: "Choir"),
+        hybridPreset("Sacred Minimalist Piano", ["Sacred Minimalist Piano", "Piano Minimalism", "Sacred Minimalism"], ["Sacred", "Reflective", "Contemplative"], bpm: 72, key: "C", mode: "Ionian / major", vocalType: "Instrumental"),
+        hybridPreset("Persian Palace at Dusk", ["Persian Palace at Dusk", "Persian Court Music", "Dastgah"], ["Regal", "Mystical", "Melancholic"], bpm: 84, key: "D", mode: "Phrygian dominant", vocalType: "Female lead"),
+        hybridPreset("Japanese Imperial Garden", ["Japanese Imperial Garden", "Gagaku", "Koto Classical"], ["Ceremonial", "Mystical", "Reflective"], bpm: 64, key: "G", mode: "Lydian", vocalType: "Instrumental"),
+        hybridPreset("Renaissance Candlelight Hall", ["Renaissance Candlelight Hall", "Renaissance Polyphony", "Lute Music"], ["Regal", "Romantic", "Sacred"], bpm: 78, key: "F", mode: "Ionian / major", vocalType: "Choir"),
+        hybridPreset("Cosmic Cathedral", ["Cosmic Cathedral", "Sacred Ambient Classical", "Classical Drone"], ["Cosmic", "Sacred", "Ethereal"], bpm: 48, key: "C# / Db", mode: "Lydian", vocalType: "Choir"),
+        hybridPreset("Frozen Basilica", ["Frozen Basilica", "Sacred Choral", "Dark Classical"], ["Winter", "Sacred", "Grief"], bpm: 54, key: "E", mode: "Aeolian / natural minor", vocalType: "Choir"),
+        hybridPreset("Royal Coronation Procession", ["Royal Coronation Procession", "Coronation Music", "Brass Ensemble"], ["Majestic", "Regal", "Triumphant"], bpm: 96, key: "C", mode: "Ionian / major", vocalType: "Choir"),
+        hybridPreset("Monastic Rainstorm", ["Monastic Rainstorm", "Monastic Chant", "Sacred Ambient Classical"], ["Sacred", "Rainy", "Contemplative"], bpm: 60, key: "A", mode: "Dorian", vocalType: "Choir")
     ]
 
     private static func hybridPreset(_ name: String, _ genres: [String], _ moods: [String], bpm: Double, key: String, mode: String, vocalType: String) -> PromptPreset {

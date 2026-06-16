@@ -17,6 +17,9 @@ enum StyleTagCategoryDisplay {
         if category.hasPrefix("Metal - ") {
             return "Metal"
         }
+        if category.hasPrefix("Classical - ") {
+            return "Classical"
+        }
         if category.hasPrefix("Funk - ") {
             return "Funk"
         }
@@ -187,6 +190,45 @@ enum StyleTagCatalog {
         ("Folk & Acoustic", ["Folk", "Contemporary Folk", "Indie Folk", "Dark Folk", "Neofolk", "Acoustic", "Singer-Songwriter", "Celtic Folk", "Nordic Folk", "Appalachian Folk", "Americana"]),
         ("Country", ["Traditional Country", "Outlaw Country", "Country Rock", "Modern Country", "Alt-Country", "Bluegrass", "Honky Tonk", "Western Swing", "Country Pop"]),
         ("Classical", ["Baroque", "Classical", "Romantic", "Impressionist", "Contemporary Classical", "Minimalism", "Chamber Music", "Orchestral", "Symphonic", "Choral", "Sacred Music"]),
+        ("Classical - Medieval", ["Medieval Sacred Music", "Gregorian Chant", "Plainchant", "Organum", "Ars Antiqua", "Ars Nova", "Troubadour Music", "Trouvere Music", "Minnesang", "Medieval Court Music", "Medieval Instrumental Music"]),
+        ("Classical - Renaissance", ["Renaissance Polyphony", "Renaissance Sacred Music", "Renaissance Court Music", "Renaissance Choral", "Madrigal", "Consort Music", "Renaissance Dance Music", "Lute Music", "Early Keyboard Music", "Renaissance Mass"]),
+        ("Classical - Baroque", ["Baroque", "High Baroque", "Early Baroque", "Late Baroque", "Sacred Baroque", "Chamber Baroque", "Concerto Grosso", "Baroque Opera", "Baroque Organ Music", "Baroque Harpsichord", "Baroque Strings", "Baroque Trumpet Music"]),
+        ("Classical - Classical Period", ["Viennese Classical", "Classical Symphony", "Classical Chamber Music", "Classical Piano", "Classical Opera", "Classical Concerto", "Classical Serenade", "Classical Divertimento"]),
+        ("Classical - Romantic", ["Early Romantic", "High Romantic", "Late Romantic", "National Romanticism", "Romantic Piano", "Romantic Symphony", "Romantic Opera", "Romantic Chamber Music", "Virtuoso Romantic", "Program Music"]),
+        ("Classical - Impressionist", ["Impressionism", "French Impressionism", "Orchestral Impressionism", "Piano Impressionism"]),
+        ("Classical - Modern", ["Modern Classical", "Early Modernism", "Expressionism", "Neo-Classical", "Serialism", "Twelve-Tone Music", "Avant-Garde Classical", "Experimental Classical", "Minimalism", "Post-Minimalism", "Spectral Music", "Contemporary Classical"]),
+        ("Classical - Sacred Western Traditions", ["Gregorian Chant", "Monastic Chant", "Sacred Choral", "Cathedral Choir", "Liturgical Music", "Anglican Choral", "Russian Orthodox Choir", "Byzantine Chant", "Armenian Sacred Music", "Sacred Organ Music", "Requiem", "Passion Music", "Sacred Oratorio"]),
+        ("Classical - Choral", ["A Cappella Choir", "Mixed Choir", "Male Choir", "Female Choir", "Chamber Choir", "Symphonic Choir", "Cathedral Choir", "Liturgical Choir", "Children's Choir", "Festival Choir"]),
+        ("Classical - Orchestral", ["Symphony Orchestra", "Chamber Orchestra", "String Orchestra", "Wind Orchestra", "Concert Band", "Brass Ensemble", "Symphonic Poem", "Overture", "Tone Poem"]),
+        ("Classical - Chamber Music", ["String Quartet", "Piano Trio", "String Trio", "Chamber Ensemble", "Wind Quintet", "Brass Quintet", "Mixed Chamber Music", "Classical Guitar Ensemble"]),
+        ("Classical - Piano Traditions", ["Solo Piano", "Romantic Piano", "Classical Piano", "Virtuoso Piano", "Impressionist Piano", "Modern Piano", "Minimalist Piano", "Neo-Classical Piano"]),
+        ("Classical - Opera", ["Baroque Opera", "Classical Opera", "Romantic Opera", "Grand Opera", "Comic Opera", "Opera Buffa", "Opera Seria", "Wagnerian Opera", "Modern Opera"]),
+        ("Classical - Minimalism", ["Minimalism", "Piano Minimalism", "Orchestral Minimalism", "Sacred Minimalism", "Post-Minimalism", "Ambient Classical", "Contemporary Minimalism"]),
+        ("Classical - Neo-Classical Modern", ["Neo-Classical", "Cinematic Neo-Classical", "Modern Piano Neo-Classical", "Ambient Neo-Classical", "Dark Neo-Classical", "Emotional Neo-Classical"]),
+        ("Classical - Russian Traditions", ["Russian Classical", "Russian Romantic", "Russian Sacred Choir", "Russian Orthodox Chant", "Russian Piano School", "Soviet Classical"]),
+        ("Classical - French Traditions", ["French Baroque", "French Impressionism", "French Romantic", "French Organ Tradition"]),
+        ("Classical - German Traditions", ["German Romantic", "German Sacred Music", "German Symphony", "German Organ Music"]),
+        ("Classical - British Traditions", ["English Choral", "English Cathedral Music", "British Pastoral", "English Chamber Music"]),
+        ("Classical - Spanish Traditions", ["Spanish Classical", "Spanish Guitar Classical", "Iberian Nationalism"]),
+        ("Classical - Eastern European", ["Polish Classical", "Czech Classical", "Hungarian Classical", "Balkan Classical", "Romanian Classical"]),
+        ("Classical - Hindustani", ["Hindustani Classical", "Dhrupad", "Khayal", "Thumri", "Tarana", "Raga Performance", "Instrumental Raga", "Vocal Raga", "Sitar Classical", "Sarod Classical"]),
+        ("Classical - Carnatic", ["Carnatic Classical", "Kriti", "Varnam", "Carnatic Violin", "Veena Classical", "Mridangam Classical"]),
+        ("Classical - Persian", ["Persian Classical", "Dastgah", "Persian Court Music", "Santur Classical", "Setar Classical", "Ney Classical"]),
+        ("Classical - Arabic", ["Arabic Classical", "Takht Ensemble", "Maqam", "Andalusian Classical", "Ottoman Classical", "Levantine Art Music"]),
+        ("Classical - Turkish", ["Ottoman Court Music", "Turkish Classical", "Turkish Makam", "Sufi Classical"]),
+        ("Classical - Chinese", ["Chinese Court Music", "Guqin Music", "Guzheng Classical", "Pipa Classical", "Silk and Bamboo Ensemble", "Chinese Literati Music"]),
+        ("Classical - Japanese", ["Gagaku", "Koto Classical", "Shakuhachi Classical", "Court Music of Japan", "Imperial Japanese Music"]),
+        ("Classical - Korean", ["Gugak", "Korean Court Music", "Jeongak", "Traditional Korean Chamber Music"]),
+        ("Classical - Southeast Asian", ["Javanese Court Gamelan", "Balinese Court Gamelan", "Classical Gamelan", "Thai Classical", "Thai Court Ensemble", "Khmer Classical", "Royal Khmer Music", "Vietnamese Court Music", "Nha Nhac"]),
+        ("Classical - Central Asian", ["Uzbek Court Music", "Tajik Classical", "Silk Road Court Music"]),
+        ("Classical - Jewish Traditions", ["Cantorial Music", "Sephardic Art Music", "Ashkenazi Liturgical Music"]),
+        ("Classical - African Art Music", ["Ethiopian Orthodox Chant", "Ethiopian Classical", "West African Court Music", "Griot Art Tradition"]),
+        ("Classical - Sacred & Ritual", ["Monastic Chant", "Temple Music", "Court Ritual Music", "Royal Ceremonial Music", "Liturgical Processional", "Coronation Music"]),
+        ("Classical - Contemporary Hybrids", ["Ambient Classical", "Electronic Classical", "Classical Drone", "Classical Minimalism", "Cinematic Classical", "Dark Classical", "Neo-Medieval Classical", "Post-Classical", "Sacred Ambient Classical", "Experimental Classical"]),
+        ("Classical - Hybrid Presets", ["Cathedral at Midnight", "Russian Orthodox Winter Choir", "Byzantine Imperial Court", "Sacred Minimalist Piano", "Arctic Monastery", "Medieval Observatory", "Persian Palace at Dusk", "Ottoman Court Ceremony", "Japanese Imperial Garden", "Tibetan Mountain Monastery", "Renaissance Candlelight Hall", "Victorian Mourning Chamber Music", "Cosmic Cathedral", "Neo-Classical Dreamscape", "Forgotten Abbey Choir", "Frozen Basilica", "Desert Temple Ritual", "Ancient Library Atmosphere", "Royal Coronation Procession", "Monastic Rainstorm"]),
+        ("Classical Ensemble", ["Solo Piano", "Solo Violin", "String Quartet", "Chamber Orchestra", "Full Symphony Orchestra", "Choir", "Organ", "Harpsichord", "Sitar", "Guqin", "Koto", "Gamelan"]),
+        ("Classical Mood", ["Sacred", "Solemn", "Majestic", "Regal", "Mystical", "Melancholic", "Triumphant", "Reflective", "Contemplative", "Ceremonial"]),
+        ("Classical Venue", ["Cathedral", "Abbey", "Palace", "Court", "Concert Hall", "Monastery", "Temple", "Open Air Amphitheatre"]),
         ("Cinematic", ["Film Score", "Trailer Music", "Epic Orchestral", "Hybrid Orchestral", "Dark Cinematic", "Ambient Cinematic", "Post-Rock Cinematic", "Sci-Fi Score", "Horror Score", "Fantasy Score"]),
         ("World", ["Middle Eastern", "Arabic", "Persian", "Turkish", "Indian Classical", "Bollywood", "Qawwali", "African Traditional", "Afrobeat", "Highlife", "Flamenco", "Tango", "Mariachi", "Bossa Nova", "Samba", "Reggaeton", "Celtic", "Nordic"]),
         ("Reggae / Dub", ["Reggae", "Roots Reggae", "Dub", "Dub Techno", "Digital Dub", "Dub Poetry", "Lovers Rock", "Dancehall"]),
