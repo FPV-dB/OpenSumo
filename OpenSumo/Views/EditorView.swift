@@ -63,8 +63,7 @@ struct EditorView: View {
                     .foregroundStyle(AppTheme.secondaryText)
             }
 
-            MultiSelectChipView(title: "Contemporary Genres", options: PromptOptions.contemporaryGenres, selection: $viewModel.currentPreset.genres)
-            MultiSelectChipView(title: "World / Ethnic / Traditional Styles", options: PromptOptions.ethnicMusicStyles, selection: $viewModel.currentPreset.genres)
+            SearchableStyleTagView(title: "Style Tags", tags: viewModel.styleTags, selection: $viewModel.currentPreset.genres)
             HStack {
                 Text("BPM")
                 Slider(value: $viewModel.currentPreset.bpm, in: 40...220, step: 1)

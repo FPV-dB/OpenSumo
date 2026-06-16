@@ -6,6 +6,7 @@ final class PromptEditorViewModel: ObservableObject {
     @Published private(set) var presets: [PromptPreset]
     @Published var selectedSection: String = "Style"
     @Published var selectedPresetID: PromptPreset.ID?
+    @Published private(set) var styleTags: [StyleTag]
     @Published var currentPreset: PromptPreset {
         didSet {
             guard !isUpdatingPrompt else { return }
@@ -17,14 +18,17 @@ final class PromptEditorViewModel: ObservableObject {
     @Published var storeError: String?
 
     private let store: PresetStore
+    private let styleTagStore: StyleTagStore
     private let generator: PromptGenerator
     private var wordingVariant = 0
     private var isUpdatingPrompt = false
 
-    init(store: PresetStore = PresetStore(), generator: PromptGenerator = PromptGenerator()) {
+    init(store: PresetStore = PresetStore(), styleTagStore: StyleTagStore = StyleTagStore(), generator: PromptGenerator = PromptGenerator()) {
         self.store = store
+        self.styleTagStore = styleTagStore
         self.generator = generator
         let loaded = store.loadPresets()
+        styleTags = styleTagStore.loadTags()
         presets = loaded
         currentPreset = loaded.first ?? .empty
         selectedPresetID = currentPreset.id
@@ -76,9 +80,10 @@ final class PromptEditorViewModel: ObservableObject {
         var preset = PromptPreset.empty
         preset.id = UUID()
         preset.name = uniqueName("Random Prompt")
-        preset.genres = randomSelection(from: PromptOptions.contemporaryGenres, count: Int.random(in: 1...2))
+        let conventionalStyles = styleTags.filter { !["Atmosphere Tags", "Production Styles"].contains($0.category) }.map(\.name)
+        preset.genres = randomSelection(from: conventionalStyles.isEmpty ? PromptOptions.genres : conventionalStyles, count: Int.random(in: 2...5))
         if Bool.random() {
-            preset.genres += randomSelection(from: PromptOptions.ethnicMusicStyles, count: Int.random(in: 1...3))
+            preset.genres += randomSelection(from: PromptOptions.ethnicMusicStyles, count: Int.random(in: 1...2))
         }
         preset.moods = randomSelection(from: PromptOptions.moods, count: Int.random(in: 2...4))
         preset.bpm = Double(Int.random(in: 52...190))

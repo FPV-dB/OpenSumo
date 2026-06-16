@@ -16,6 +16,9 @@ let package = Package(
             resources: [
                 .copy("../Resources/OpenSumoIcon.icns"),
                 .copy("../Resources/OpenSumoIcon.png")
+            ],
+            linkerSettings: [
+                .linkedLibrary("sqlite3")
             ]
         )
     ]
