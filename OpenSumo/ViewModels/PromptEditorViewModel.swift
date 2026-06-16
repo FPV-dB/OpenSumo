@@ -72,6 +72,48 @@ final class PromptEditorViewModel: ObservableObject {
         saveAllPresets()
     }
 
+    func randomisePrompt() {
+        var preset = PromptPreset.empty
+        preset.id = UUID()
+        preset.name = uniqueName("Random Prompt")
+        preset.genres = randomSelection(from: PromptOptions.contemporaryGenres, count: Int.random(in: 1...2))
+        if Bool.random() {
+            preset.genres += randomSelection(from: PromptOptions.ethnicMusicStyles, count: Int.random(in: 1...3))
+        }
+        preset.moods = randomSelection(from: PromptOptions.moods, count: Int.random(in: 2...4))
+        preset.bpm = Double(Int.random(in: 52...190))
+        preset.key = PromptOptions.keys.randomElement() ?? "C"
+        preset.mode = PromptOptions.modes.randomElement() ?? "Ionian / major"
+        preset.timeSignature = PromptOptions.timeSignatures.randomElement() ?? "4/4"
+        preset.alternateTimeSignatures = Bool.random() ? randomSelection(from: PromptOptions.timeSignatures.filter { $0 != preset.timeSignature }, count: Int.random(in: 1...3)) : []
+        preset.tempoFeel = PromptOptions.tempoFeels.randomElement() ?? "straight"
+        preset.tempoMap = PromptOptions.tempoMaps.randomElement() ?? "steady tempo"
+        preset.swingAmount = Double.random(in: 0...0.75)
+        preset.tempoHumanization = Double.random(in: 0...0.65)
+        preset.vocalType = PromptOptions.vocalTypes.randomElement() ?? "Female lead"
+        preset.vocalStyles = preset.vocalType == "Instrumental" ? [] : randomSelection(from: PromptOptions.vocalStyles, count: Int.random(in: 1...4))
+        preset.vocalDistance = Double.random(in: 0...1)
+        preset.vocalIntensity = Double.random(in: 0.15...1)
+        preset.instruments = randomSelection(from: PromptOptions.instruments, count: Int.random(in: 3...7))
+        preset.reverbType = PromptOptions.reverbTypes.randomElement() ?? "hall"
+        preset.reverbAmount = Double.random(in: 0.12...0.95)
+        preset.delayType = PromptOptions.delayTypes.randomElement() ?? "none"
+        preset.saturationType = PromptOptions.saturationTypes.randomElement() ?? "tape warmth"
+        preset.stereoWidth = Double.random(in: 0.25...0.95)
+        preset.dynamics = PromptOptions.dynamicsTypes.randomElement() ?? "balanced"
+        preset.effects = randomSelection(from: PromptOptions.effects, count: Int.random(in: 0...4))
+        preset.arrangementSections = randomArrangement()
+        preset.detailLevel = PromptDetailLevel.allCases.randomElement() ?? .detailed
+        preset.frontLoadEnabled = Bool.random()
+        preset.frontLoadText = preset.frontLoadEnabled ? frontLoadPhrase(for: preset) : ""
+        preset.artistNameSafeMode = true
+        preset.generatedPrompt = generator.generate(from: preset, variant: wordingVariant)
+        presets.insert(preset, at: 0)
+        selectedPresetID = preset.id
+        currentPreset = preset
+        saveAllPresets()
+    }
+
     func deletePreset() {
         guard presets.count > 1 else {
             newPrompt()
@@ -163,5 +205,26 @@ final class PromptEditorViewModel: ObservableObject {
             counter += 1
         }
         return "\(base) \(counter)"
+    }
+
+    private func randomSelection(from options: [String], count: Int) -> [String] {
+        Array(options.shuffled().prefix(max(0, min(count, options.count))))
+    }
+
+    private func randomArrangement() -> [String] {
+        var sections = ["Intro", "Verse", "Chorus"]
+        let middle = randomSelection(from: ["Pre-Chorus", "Bridge", "Breakdown", "Instrumental", "Solo"], count: Int.random(in: 1...3))
+        sections.append(contentsOf: middle)
+        sections.append(Bool.random() ? "Final Chorus" : "Outro")
+        if sections.last != "Outro", Bool.random() {
+            sections.append("Outro")
+        }
+        return sections
+    }
+
+    private func frontLoadPhrase(for preset: PromptPreset) -> String {
+        let genre = preset.genres.first?.lowercased() ?? "genre-blending"
+        let mood = preset.moods.first?.lowercased() ?? "cinematic"
+        return "\(mood) \(genre) hook first, make the core identity obvious immediately"
     }
 }

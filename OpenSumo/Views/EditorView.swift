@@ -55,7 +55,16 @@ struct EditorView: View {
 
     private var styleSection: some View {
         VStack(alignment: .leading, spacing: 18) {
-            MultiSelectChipView(title: "Genre", options: PromptOptions.genres, selection: $viewModel.currentPreset.genres)
+            HStack {
+                Button("Randomise Prompt", action: viewModel.randomisePrompt)
+                    .buttonStyle(.borderedProminent)
+                Text("Creates a new preset with randomized musical, production, and arrangement choices.")
+                    .font(.caption)
+                    .foregroundStyle(AppTheme.secondaryText)
+            }
+
+            MultiSelectChipView(title: "Contemporary Genres", options: PromptOptions.contemporaryGenres, selection: $viewModel.currentPreset.genres)
+            MultiSelectChipView(title: "World / Ethnic / Traditional Styles", options: PromptOptions.ethnicMusicStyles, selection: $viewModel.currentPreset.genres)
             HStack {
                 Text("BPM")
                 Slider(value: $viewModel.currentPreset.bpm, in: 40...220, step: 1)

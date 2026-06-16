@@ -16,6 +16,7 @@ struct SidebarView: View {
 
             VStack(spacing: 8) {
                 Button("New Prompt", action: viewModel.newPrompt)
+                Button("Randomise Prompt", action: viewModel.randomisePrompt)
                 Button("Save Preset", action: viewModel.savePreset)
                 Button("Duplicate Preset", action: viewModel.duplicatePreset)
                 Button("Delete Preset", role: .destructive, action: viewModel.deletePreset)
