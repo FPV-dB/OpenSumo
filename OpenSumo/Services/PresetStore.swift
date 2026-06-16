@@ -25,7 +25,12 @@ struct PresetStore {
             }
             let data = try Data(contentsOf: url)
             let presets = try decoder.decode([PromptPreset].self, from: data)
-            return presets.isEmpty ? PromptPreset.starterPresets : presets
+            guard !presets.isEmpty else { return PromptPreset.starterPresets }
+            let merged = mergedWithStarterPresets(presets)
+            if merged.count != presets.count {
+                try? savePresets(merged)
+            }
+            return merged
         } catch {
             return PromptPreset.starterPresets
         }
@@ -36,5 +41,11 @@ struct PresetStore {
         try FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
         let data = try encoder.encode(presets)
         try data.write(to: url, options: [.atomic])
+    }
+
+    private func mergedWithStarterPresets(_ presets: [PromptPreset]) -> [PromptPreset] {
+        let existingNames = Set(presets.map(\.name))
+        let missingStarters = PromptPreset.starterPresets.filter { !existingNames.contains($0.name) }
+        return presets + missingStarters
     }
 }

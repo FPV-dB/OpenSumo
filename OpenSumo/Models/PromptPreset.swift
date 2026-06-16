@@ -287,7 +287,9 @@ enum PromptOptions {
 extension PromptPreset {
     static let empty = PromptPreset(name: "Untitled Prompt")
 
-    static let starterPresets: [PromptPreset] = [
+    static let starterPresets: [PromptPreset] = coreStarterPresets + hybridStarterPresets
+
+    private static let coreStarterPresets: [PromptPreset] = [
         PromptPreset(
             name: "Dream Pop Heartbreak",
             genres: ["Dream Pop", "Shoegaze"],
@@ -416,4 +418,68 @@ extension PromptPreset {
             detailLevel: .extreme
         )
     ]
+
+    private static let hybridStarterPresets: [PromptPreset] = [
+        hybridPreset("Cathedral Black Metal", ["Cathedral Black Metal", "Atmospheric Black Metal", "Sacred Choral"], ["Apocalyptic", "Catharsis", "Sacred"], bpm: 126, key: "F# / Gb", mode: "Phrygian dominant", vocalType: "Choir"),
+        hybridPreset("Dream Pop Deathcore", ["Dream Pop Deathcore", "Dream Pop", "Deathcore"], ["Longing", "Catharsis", "Dreamlike"], bpm: 142, key: "B", mode: "Aeolian / natural minor", vocalType: "Duet"),
+        hybridPreset("Industrial Dub Shoegaze", ["Industrial Dub Shoegaze", "Industrial Dub", "Shoegaze"], ["Urban", "Isolated", "Nostalgic"], bpm: 104, key: "D", mode: "Dorian", vocalType: "Spoken word"),
+        hybridPreset("Appalachian Doom", ["Appalachian Doom", "Appalachian Folk", "Traditional Doom"], ["Rural", "Haunted", "Melancholic"], bpm: 68, key: "A", mode: "Aeolian / natural minor", vocalType: "Male lead"),
+        hybridPreset("Cyberpunk Gospel", ["Cyberpunk Gospel", "Gospel", "Cyberpunk Score"], ["Spiritual", "Futuristic", "Triumphant"], bpm: 118, key: "C# / Db", mode: "Mixolydian", vocalType: "Choir"),
+        hybridPreset("Viking Synthwave", ["Viking Synthwave", "Synthwave", "Viking Metal"], ["Heroic", "Cosmic", "Triumphant"], bpm: 112, key: "E", mode: "Dorian", vocalType: "Male lead"),
+        hybridPreset("Ritual Ambient Techno", ["Ritual Ambient Techno", "Ritual Ambient", "Hypnotic Techno"], ["Mystical", "Spiritual", "Night-Time"], bpm: 124, key: "G", mode: "Phrygian", vocalType: "Instrumental"),
+        hybridPreset("Blackened Trip Hop", ["Blackened Trip Hop", "Trip-Hop", "Black Metal"], ["Dystopian", "Lonely", "Haunted"], bpm: 82, key: "D# / Eb", mode: "Locrian", vocalType: "Female lead"),
+        hybridPreset("Desert Psychedelic Doom", ["Desert Psychedelic Doom", "Psychedelic Doom", "Desert Rock"], ["Apocalyptic", "Rural", "Cosmic"], bpm: 72, key: "F", mode: "Phrygian dominant", vocalType: "Male lead"),
+        hybridPreset("Space Western", ["Space Western", "Space Rock", "Country Rock"], ["Cosmic", "Lonely", "Heroic"], bpm: 96, key: "G", mode: "Mixolydian", vocalType: "Male lead"),
+        hybridPreset("Monastic Industrial", ["Monastic Industrial", "Monastic Chant", "Industrial Ambient"], ["Sacred", "Dystopian", "Isolated"], bpm: 88, key: "C", mode: "Phrygian", vocalType: "Choir"),
+        hybridPreset("Post-Apocalyptic Folk", ["Post-Apocalyptic Folk", "Dark Folk", "Post-Apocalyptic Score"], ["Apocalyptic", "Hopeful", "Rural"], bpm: 78, key: "E", mode: "Aeolian / natural minor", vocalType: "Female lead"),
+        hybridPreset("Gothic Americana", ["Gothic Americana", "Americana", "Gothic Rock"], ["Haunted", "Romantic", "Melancholic"], bpm: 84, key: "A", mode: "Dorian", vocalType: "Duet"),
+        hybridPreset("Dark Jazz Noir", ["Dark Jazz Noir", "Modal Jazz", "Dark Cinematic"], ["Night-Time", "Urban", "Mystical"], bpm: 74, key: "D", mode: "Dorian", vocalType: "Spoken word"),
+        hybridPreset("Haunted Carnival", ["Haunted Carnival", "Dark Cabaret", "Horror Soundtrack"], ["Haunted", "Dreamlike", "Dystopian"], bpm: 132, key: "A# / Bb", mode: "Harmonic minor", vocalType: "Choir"),
+        hybridPreset("Soviet Space Ambient", ["Soviet Space Ambient", "Space Ambient", "Military Documentary"], ["Cosmic", "Isolated", "Nostalgic"], bpm: 62, key: "C", mode: "Lydian", vocalType: "Instrumental"),
+        hybridPreset("Nuclear Winter Soundtrack", ["Nuclear Winter Soundtrack", "Dark Ambient", "Post-Apocalyptic Score"], ["Winter", "Apocalyptic", "Lonely"], bpm: 58, key: "F# / Gb", mode: "Locrian", vocalType: "Instrumental"),
+        hybridPreset("Cosmic Funeral Doom", ["Cosmic Funeral Doom", "Funeral Doom", "Space Ambient"], ["Cosmic", "Grief", "Sacred"], bpm: 48, key: "B", mode: "Locrian", vocalType: "Choir"),
+        hybridPreset("Medieval Cyberpunk", ["Medieval Cyberpunk", "Medieval Folk", "Cyberpunk Score"], ["Futuristic", "Mystical", "Urban"], bpm: 110, key: "D", mode: "Dorian", vocalType: "Female lead"),
+        hybridPreset("Deep Ocean Drone", ["Deep Ocean Drone", "Drone Ambient", "Oceanic"], ["Oceanic", "Isolated", "Mystical"], bpm: 44, key: "C# / Db", mode: "Whole tone", vocalType: "Instrumental"),
+        hybridPreset("Urban Isolation Soundscape", ["Urban Isolation Soundscape", "Soundscape", "Dark Ambient"], ["Urban", "Isolated", "Lonely"], bpm: 70, key: "G# / Ab", mode: "Aeolian / natural minor", vocalType: "Spoken word"),
+        hybridPreset("Drone Pilot Night Flight", ["Drone Pilot Night Flight", "Ambient Techno", "Dark Cinematic"], ["Night-Time", "Futuristic", "Isolated"], bpm: 102, key: "E", mode: "Dorian", vocalType: "Instrumental"),
+        hybridPreset("Rainy Suburban Nostalgia", ["Rainy Suburban Nostalgia", "Dream Pop", "Lo-Fi"], ["Nostalgic", "Longing", "Rainy"], bpm: 86, key: "A", mode: "Ionian / major", vocalType: "Female lead"),
+        hybridPreset("Forgotten Shopping Mall Vaporwave", ["Forgotten Shopping Mall Vaporwave", "Mallsoft", "Vaporwave"], ["Nostalgic", "Haunted", "Dreamlike"], bpm: 76, key: "F", mode: "Lydian", vocalType: "Instrumental"),
+        hybridPreset("Last Train Home", ["Last Train Home", "Post-Rock Cinematic", "Ambient Pop"], ["Longing", "Night-Time", "Hopeful"], bpm: 92, key: "E", mode: "Mixolydian", vocalType: "Female lead"),
+        hybridPreset("Cold War Numbers Station", ["Cold War Numbers Station", "Industrial Ambient", "Radio Broadcast"], ["Dystopian", "Haunted", "Night-Time"], bpm: 66, key: "D", mode: "Phrygian", vocalType: "Spoken word"),
+        hybridPreset("Arctic Research Station Ambient", ["Arctic Research Station Ambient", "Isolationist Ambient", "Cinematic Ambient"], ["Winter", "Isolated", "Cosmic"], bpm: 52, key: "C", mode: "Lydian", vocalType: "Instrumental"),
+        hybridPreset("Abandoned Cathedral Choir", ["Abandoned Cathedral Choir", "Sacred Choral", "Dark Ambient"], ["Sacred", "Haunted", "Grief"], bpm: 60, key: "G", mode: "Aeolian / natural minor", vocalType: "Choir")
+    ]
+
+    private static func hybridPreset(_ name: String, _ genres: [String], _ moods: [String], bpm: Double, key: String, mode: String, vocalType: String) -> PromptPreset {
+        PromptPreset(
+            name: name,
+            genres: genres,
+            moods: moods,
+            bpm: bpm,
+            key: key,
+            mode: mode,
+            timeSignature: "4/4",
+            tempoFeel: "loose live band",
+            tempoMap: "subtle tempo drift",
+            swingAmount: 0.18,
+            tempoHumanization: 0.32,
+            vocalType: vocalType,
+            vocalStyles: vocalType == "Instrumental" ? [] : ["layered harmonies"],
+            vocalDistance: 0.62,
+            vocalIntensity: 0.68,
+            instruments: ["analog synth pads", "field recordings", "cinematic strings", "industrial percussion"],
+            reverbType: "cathedral",
+            reverbAmount: 0.78,
+            delayType: "tape delay",
+            saturationType: "tape warmth",
+            stereoWidth: 0.82,
+            dynamics: "wall of sound",
+            effects: ["tape hiss", "radio static", "reverse cymbals"],
+            arrangementSections: ["Intro", "Verse", "Chorus", "Bridge", "Final Chorus", "Outro"],
+            detailLevel: .extreme,
+            frontLoadEnabled: true,
+            frontLoadText: "\(name) identity first, make the hybrid style unmistakable immediately",
+            artistNameSafeMode: true
+        )
+    }
 }
