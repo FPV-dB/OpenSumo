@@ -11,6 +11,9 @@ enum StyleTagCategoryDisplay {
         if category.hasPrefix("Folk & Ethnic") || category == "Folk & Acoustic" || category == "World" || category == "World Expanded" {
             return "Folk & Ethnic"
         }
+        if category.hasPrefix("Rock - ") {
+            return "Rock"
+        }
         return category
     }
 }
@@ -25,6 +28,45 @@ enum StyleTagCatalog {
 
     private static let curatedCategories: [(String, [String])] = [
         ("Rock", ["Classic Rock", "Hard Rock", "Arena Rock", "Blues Rock", "Southern Rock", "Garage Rock", "Alternative Rock", "Indie Rock", "Post-Rock", "Math Rock", "Noise Rock", "Psychedelic Rock", "Progressive Rock", "Art Rock", "Folk Rock", "Gothic Rock", "Surf Rock", "Stoner Rock", "Desert Rock", "Space Rock", "Shoegaze", "Dream Pop", "Britpop", "Grunge", "College Rock"]),
+        ("Rock - Foundational", ["Rock and Roll", "Early Rock and Roll", "Classic Rock", "Mainstream Rock", "Album Rock", "Heritage Rock", "Arena Rock", "Stadium Rock", "Anthem Rock", "Radio Rock", "Guitar Rock"]),
+        ("Rock - Proto", ["Rockabilly", "Blues Rock", "Rhythm and Blues Rock", "Skiffle", "Garage Rock", "Proto-Punk", "Proto-Metal", "British Invasion"]),
+        ("Rock - Classic Era", ["Hard Rock", "Soft Rock", "Southern Rock", "Boogie Rock", "Pub Rock", "Heartland Rock", "Country Rock", "Roots Rock", "Swamp Rock", "Yacht Rock", "Folk Rock"]),
+        ("Rock - Psychedelic Family", ["Psychedelic Rock", "Acid Rock", "Neo-Psychedelia", "Space Rock", "Cosmic Rock", "Heavy Psychedelia", "Psychedelic Folk", "Psychedelic Pop", "Psychedelic Blues", "Psychedelic Garage Rock"]),
+        ("Rock - Progressive Family", ["Progressive Rock", "Symphonic Progressive Rock", "Art Rock", "Canterbury Scene", "Neo-Prog", "Progressive Folk", "Progressive Hard Rock", "Progressive Alternative Rock", "Eclectic Prog", "Retro Progressive Rock", "Experimental Progressive Rock"]),
+        ("Rock - Art & Experimental", ["Art Rock", "Avant-Rock", "Experimental Rock", "Noise Rock", "No Wave", "Industrial Rock", "Electro Rock", "Electronic Rock", "Post-Industrial Rock", "Sound Collage Rock", "Drone Rock"]),
+        ("Rock - Alternative Family", ["Alternative Rock", "Alternative Pop Rock", "Alternative Hard Rock", "Modern Rock", "College Rock", "Indie Rock", "Mainstream Alternative", "Adult Alternative"]),
+        ("Rock - Indie Family", ["Indie Rock", "Indie Pop Rock", "Lo-Fi Indie Rock", "Jangle Pop", "Slacker Rock", "Twee Rock", "Bedroom Rock", "Dream Indie Rock", "Chamber Indie Rock"]),
+        ("Rock - Post-Punk Family", ["Post-Punk", "Gothic Rock", "Darkwave Rock", "Deathrock", "Coldwave Rock", "Post-Punk Revival", "Art Punk", "Neo-Gothic Rock"]),
+        ("Rock - Punk-Derived", ["Punk Rock", "Garage Punk", "Pop Punk", "Skate Punk", "Street Punk", "Horror Punk", "Folk Punk", "Celtic Punk", "Post-Punk", "Proto-Punk", "Punk Blues"]),
+        ("Rock - Grunge Family", ["Grunge", "Post-Grunge", "Alternative Grunge", "Heavy Grunge", "Acoustic Grunge", "Neo-Grunge"]),
+        ("Rock - Shoegaze Family", ["Shoegaze", "Dream Pop Rock", "Blackgaze", "Nu-Gaze", "Ambient Shoegaze", "Post-Shoegaze", "Noise Pop", "Ethereal Shoegaze"]),
+        ("Rock - Post-Rock Family", ["Post-Rock", "Cinematic Post-Rock", "Instrumental Post-Rock", "Ambient Post-Rock", "Heavy Post-Rock", "Orchestral Post-Rock", "Experimental Post-Rock", "Drone Post-Rock"]),
+        ("Rock - Slowcore Family", ["Slowcore", "Sadcore", "Dreamcore", "Atmospheric Slowcore", "Indie Slowcore", "Post-Rock Slowcore"]),
+        ("Rock - Math Family", ["Math Rock", "Technical Math Rock", "Progressive Math Rock", "Instrumental Math Rock", "Experimental Math Rock"]),
+        ("Rock - Garage Family", ["Garage Rock", "Garage Revival", "Garage Punk", "Garage Blues", "Fuzz Garage Rock", "Lo-Fi Garage Rock"]),
+        ("Rock - Blues-Derived", ["Blues Rock", "Electric Blues Rock", "Southern Blues Rock", "Psychedelic Blues Rock", "Hard Blues Rock", "Delta Blues Rock"]),
+        ("Rock - Folk-Derived", ["Folk Rock", "Electric Folk", "Progressive Folk", "Acid Folk", "Neo-Folk Rock", "Contemporary Folk Rock"]),
+        ("Rock - Country-Derived", ["Country Rock", "Southern Rock", "Americana Rock", "Alt-Country Rock", "Desert Country Rock"]),
+        ("Rock - Southern Family", ["Southern Rock", "Outlaw Rock", "Swamp Rock", "Boogie Rock", "Country Blues Rock"]),
+        ("Rock - Desert Family", ["Desert Rock", "Stoner Rock", "Palm Desert Rock", "Heavy Desert Rock", "Psychedelic Desert Rock"]),
+        ("Rock - Stoner Family", ["Stoner Rock", "Fuzz Rock", "Heavy Stoner Rock", "Space Stoner Rock", "Psychedelic Stoner Rock"]),
+        ("Rock - Gothic Family", ["Gothic Rock", "Dark Rock", "Romantic Gothic Rock", "Ethereal Gothic Rock", "Cathedral Gothic Rock", "Neo-Gothic Rock"]),
+        ("Rock - Industrial Family", ["Industrial Rock", "Electro Rock", "Electronic Rock", "Industrial Alternative Rock", "Industrial Gothic Rock", "Cyber Rock"]),
+        ("Rock - Electronic Rock", ["Synth Rock", "Electro Rock", "Digital Rock", "Electronic Alternative Rock", "Dance Rock", "New Wave Rock"]),
+        ("Rock - New Wave Family", ["New Wave", "Synth Rock", "New Romantic", "Power Pop", "New Wave Pop Rock", "Post-New Wave"]),
+        ("Rock - Pop-Rock Family", ["Pop Rock", "Power Pop", "Sunshine Pop Rock", "Jangle Pop", "Adult Contemporary Rock", "Soft Pop Rock"]),
+        ("Rock - Jangle Family", ["Jangle Rock", "Jangle Pop", "College Jangle Rock", "Folk Jangle Rock"]),
+        ("Rock - Noise Family", ["Noise Rock", "Harsh Noise Rock", "Experimental Noise Rock", "Industrial Noise Rock", "Feedback Rock"]),
+        ("Rock - Drone Family", ["Drone Rock", "Ambient Drone Rock", "Experimental Drone Rock", "Space Drone Rock"]),
+        ("Rock - Regional United States", ["Heartland Rock", "Southern Rock", "West Coast Rock", "Americana Rock", "Desert Rock"]),
+        ("Rock - Regional United Kingdom", ["British Rock", "Britpop", "Madchester", "Baggy"]),
+        ("Rock - Regional Australia", ["Australian Pub Rock", "Australian Alternative Rock", "Australian Indie Rock"]),
+        ("Rock - Regional Germany", ["Krautrock", "Kosmische Musik"]),
+        ("Rock - Regional Japan", ["Japanese Alternative Rock", "Japanese Shoegaze", "Visual Kei Rock"]),
+        ("Rock - Regional Latin America", ["Latin Rock", "Rock en Espanol", "Andean Rock"]),
+        ("Rock - Regional Scandinavia", ["Nordic Rock", "Scandinavian Alternative Rock"]),
+        ("Rock - Atmospheric / Mood-Oriented", ["Melancholic Rock", "Nostalgic Rock", "Winter Rock", "Autumn Rock", "Nocturnal Rock", "Rainy-Day Rock", "Oceanic Rock", "Coastal Rock", "Rural Rock", "Urban Rock", "Cinematic Rock", "Dreamlike Rock", "Ethereal Rock", "Apocalyptic Rock", "Dystopian Rock", "Cosmic Rock", "Spiritual Rock", "Sacred Rock"]),
+        ("Rock - Hybrid Presets", ["Cathedral Shoegaze", "Dream Pop Rock", "Industrial Post-Rock", "Atmospheric Alternative Rock", "Nordic Winter Rock", "Desert Highway Rock", "Rainy Night Indie Rock", "Cosmic Space Rock", "Apocalyptic Arena Rock", "Cinematic Slowcore", "Gothic Americana", "Blackened Shoegaze Rock", "Oceanic Post-Rock", "Arctic Post-Rock", "Analog Nostalgia Rock", "Cold War Alternative Rock", "Abandoned Factory Rock", "Urban Isolation Rock", "Last Train Home Rock", "Late-Night Radio Rock", "Autumn Library Rock", "Twilight Coastal Rock", "Stormfront Post-Rock", "Midnight Highway Rock", "Small Town Heartland Rock", "Soviet Space Rock", "Forgotten City Indie Rock"]),
         ("Metal", ["Heavy Metal", "Traditional Metal", "Power Metal", "Speed Metal", "Thrash Metal", "Death Metal", "Melodic Death Metal", "Technical Death Metal", "Brutal Death Metal", "Black Metal", "Atmospheric Black Metal", "Symphonic Black Metal", "Depressive Suicidal Black Metal", "Blackgaze", "Doom Metal", "Funeral Doom", "Epic Doom", "Death Doom", "Gothic Doom", "Sludge Metal", "Groove Metal", "Metalcore", "Deathcore", "Progressive Metal", "Djent", "Symphonic Metal", "Folk Metal", "Viking Metal", "Industrial Metal", "Nu Metal", "Post-Metal", "Avant-Garde Metal", "War Metal"]),
         ("Punk", ["Punk Rock", "Hardcore Punk", "Melodic Hardcore", "Post-Hardcore", "Pop Punk", "Skate Punk", "Crust Punk", "D-Beat", "Anarcho Punk", "Street Punk", "Oi!", "Horror Punk", "Folk Punk", "Celtic Punk"]),
         ("Electronic", ["Ambient", "Dark Ambient", "Drone", "IDM", "Glitch", "Experimental Electronic", "Downtempo", "Chillout", "Trip-Hop", "Breakbeat", "Big Beat", "Electronica", "Electro", "Electroclash", "Synthwave", "Darkwave", "Coldwave", "Retrowave", "Vaporwave", "Future Bass", "Drum & Bass", "Jungle", "Liquid DnB", "Neurofunk", "Dubstep", "Brostep", "UK Garage", "2-Step", "House", "Deep House", "Progressive House", "Tech House", "Minimal House", "Acid House", "Trance", "Progressive Trance", "Psytrance", "Goa Trance", "Hard Trance", "Techno", "Minimal Techno", "Detroit Techno", "Industrial Techno", "Hardstyle", "Hardcore Techno", "Gabber", "Happy Hardcore"]),

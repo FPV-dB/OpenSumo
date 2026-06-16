@@ -457,7 +457,17 @@ extension PromptPreset {
         hybridPreset("Oceanic Dream Pop", ["Oceanic Dream Pop", "Dream Pop", "Oceanic Pop"], ["Oceanic", "Dreamlike", "Longing"], bpm: 88, key: "D", mode: "Lydian", vocalType: "Female lead"),
         hybridPreset("Japanese City Pop Revival", ["Japanese City Pop Revival", "City Pop", "J-Pop"], ["Night-Time", "Urban", "Nostalgic"], bpm: 108, key: "A", mode: "Mixolydian", vocalType: "Female lead"),
         hybridPreset("Haunted Mall Pop", ["Haunted Mall Pop", "Mallsoft", "Dark Pop"], ["Haunted", "Nostalgic", "Lonely"], bpm: 78, key: "F", mode: "Lydian", vocalType: "Instrumental"),
-        hybridPreset("Late-Night Radio Pop", ["Late-Night Radio Pop", "Radio Pop", "Warm Cassette Pop"], ["Night-Time", "Romantic", "Reflective"], bpm: 82, key: "B", mode: "Aeolian / natural minor", vocalType: "Male lead")
+        hybridPreset("Late-Night Radio Pop", ["Late-Night Radio Pop", "Radio Pop", "Warm Cassette Pop"], ["Night-Time", "Romantic", "Reflective"], bpm: 82, key: "B", mode: "Aeolian / natural minor", vocalType: "Male lead"),
+        hybridPreset("Cathedral Shoegaze", ["Cathedral Shoegaze", "Shoegaze", "Cathedral Gothic Rock"], ["Sacred", "Ethereal", "Longing"], bpm: 92, key: "B", mode: "Aeolian / natural minor", vocalType: "Female lead"),
+        hybridPreset("Industrial Post-Rock", ["Industrial Post-Rock", "Post-Rock", "Industrial Rock"], ["Dystopian", "Cinematic", "Urban"], bpm: 96, key: "D", mode: "Dorian", vocalType: "Instrumental"),
+        hybridPreset("Atmospheric Alternative Rock", ["Atmospheric Alternative Rock", "Alternative Rock", "Cinematic Rock"], ["Nostalgic", "Hopeful", "Melancholic"], bpm: 104, key: "G", mode: "Mixolydian", vocalType: "Male lead"),
+        hybridPreset("Nordic Winter Rock", ["Nordic Winter Rock", "Nordic Rock", "Winter Rock"], ["Winter", "Longing", "Heroic"], bpm: 88, key: "E", mode: "Aeolian / natural minor", vocalType: "Duet"),
+        hybridPreset("Desert Highway Rock", ["Desert Highway Rock", "Desert Rock", "Americana Rock"], ["Rural", "Nocturnal", "Longing"], bpm: 110, key: "A", mode: "Dorian", vocalType: "Male lead"),
+        hybridPreset("Rainy Night Indie Rock", ["Rainy Night Indie Rock", "Indie Rock", "Rainy-Day Rock"], ["Night-Time", "Nostalgic", "Lonely"], bpm: 86, key: "C", mode: "Ionian / major", vocalType: "Female lead"),
+        hybridPreset("Cosmic Space Rock", ["Cosmic Space Rock", "Space Rock", "Cosmic Rock"], ["Cosmic", "Dreamlike", "Triumphant"], bpm: 118, key: "F# / Gb", mode: "Lydian", vocalType: "Instrumental"),
+        hybridPreset("Apocalyptic Arena Rock", ["Apocalyptic Arena Rock", "Arena Rock", "Apocalyptic Rock"], ["Apocalyptic", "Heroic", "Triumphant"], bpm: 128, key: "D", mode: "Phrygian dominant", vocalType: "Male lead"),
+        hybridPreset("Cinematic Slowcore", ["Cinematic Slowcore", "Slowcore", "Cinematic Rock"], ["Melancholic", "Longing", "Reflective"], bpm: 64, key: "A", mode: "Aeolian / natural minor", vocalType: "Female lead"),
+        hybridPreset("Forgotten City Indie Rock", ["Forgotten City Indie Rock", "Indie Rock", "Urban Rock"], ["Urban", "Haunted", "Nostalgic"], bpm: 98, key: "E", mode: "Dorian", vocalType: "Male lead")
     ]
 
     private static func hybridPreset(_ name: String, _ genres: [String], _ moods: [String], bpm: Double, key: String, mode: String, vocalType: String) -> PromptPreset {
