@@ -14,10 +14,13 @@ enum StyleTagCategoryDisplay {
         if category.hasPrefix("Rock - ") {
             return "Rock"
         }
+        if category.hasPrefix("Metal - ") {
+            return "Metal"
+        }
         if category.hasPrefix("Funk - ") {
             return "Funk"
         }
-        if category.hasPrefix("Electronica - ") {
+        if category == "Electronic" || category.hasPrefix("Electronic - ") || category.hasPrefix("Electronica - ") {
             return "Electronica"
         }
         return category
