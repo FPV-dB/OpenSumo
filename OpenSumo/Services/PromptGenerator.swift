@@ -10,7 +10,7 @@ struct PromptGenerator {
         }
 
         parts.append("\(Int(preset.bpm.rounded())) BPM")
-        parts.append(preset.key)
+        parts.append("\(preset.key) \(preset.mode)")
         parts.append("\(preset.timeSignature) time")
 
         if !preset.genres.isEmpty {

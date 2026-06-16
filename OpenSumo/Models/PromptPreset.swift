@@ -7,6 +7,7 @@ struct PromptPreset: Identifiable, Codable, Equatable {
     var moods: [String]
     var bpm: Double
     var key: String
+    var mode: String
     var timeSignature: String
     var vocalType: String
     var vocalStyles: [String]
@@ -35,7 +36,8 @@ struct PromptPreset: Identifiable, Codable, Equatable {
         genres: [String] = [],
         moods: [String] = [],
         bpm: Double = 92,
-        key: String = "B minor",
+        key: String = "B",
+        mode: String = "Aeolian / natural minor",
         timeSignature: String = "4/4",
         vocalType: String = "Female lead",
         vocalStyles: [String] = [],
@@ -64,6 +66,7 @@ struct PromptPreset: Identifiable, Codable, Equatable {
         self.moods = moods
         self.bpm = bpm
         self.key = key
+        self.mode = mode
         self.timeSignature = timeSignature
         self.vocalType = vocalType
         self.vocalStyles = vocalStyles
@@ -96,6 +99,7 @@ extension PromptPreset {
         case moods
         case bpm
         case key
+        case mode
         case timeSignature
         case vocalType
         case vocalStyles
@@ -126,7 +130,11 @@ extension PromptPreset {
         genres = try container.decodeIfPresent([String].self, forKey: .genres) ?? []
         moods = try container.decodeIfPresent([String].self, forKey: .moods) ?? []
         bpm = try container.decodeIfPresent(Double.self, forKey: .bpm) ?? 92
-        key = try container.decodeIfPresent(String.self, forKey: .key) ?? "B minor"
+        let decodedKey = try container.decodeIfPresent(String.self, forKey: .key) ?? "B"
+        let decodedMode = try container.decodeIfPresent(String.self, forKey: .mode)
+        let normalized = PromptPreset.normalizedKeyAndMode(key: decodedKey, mode: decodedMode)
+        key = normalized.key
+        mode = normalized.mode
         timeSignature = try container.decodeIfPresent(String.self, forKey: .timeSignature) ?? "4/4"
         vocalType = try container.decodeIfPresent(String.self, forKey: .vocalType) ?? "Female lead"
         vocalStyles = try container.decodeIfPresent([String].self, forKey: .vocalStyles) ?? []
@@ -151,6 +159,24 @@ extension PromptPreset {
     }
 }
 
+private extension PromptPreset {
+    static func normalizedKeyAndMode(key: String, mode: String?) -> (key: String, mode: String) {
+        let trimmedKey = key.trimmingCharacters(in: .whitespacesAndNewlines)
+        if let mode, !mode.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            return (trimmedKey, mode)
+        }
+
+        let lowercased = trimmedKey.lowercased()
+        if lowercased.hasSuffix(" major") {
+            return (String(trimmedKey.dropLast(6)), "Ionian / major")
+        }
+        if lowercased.hasSuffix(" minor") {
+            return (String(trimmedKey.dropLast(6)), "Aeolian / natural minor")
+        }
+        return (trimmedKey.isEmpty ? "C" : trimmedKey, "Ionian / major")
+    }
+}
+
 enum PromptDetailLevel: String, CaseIterable, Identifiable, Codable {
     case simple = "Simple"
     case detailed = "Detailed"
@@ -162,7 +188,31 @@ enum PromptDetailLevel: String, CaseIterable, Identifiable, Codable {
 enum PromptOptions {
     static let sections = ["Style", "Mood", "Vocals", "Instruments", "Production", "Effects", "Arrangement", "Advanced"]
     static let genres = ["Dream Pop", "Shoegaze", "Industrial", "Synthwave", "Black Metal", "Death Metal", "Groove Metal", "Country", "Folk", "Ambient", "Dub", "EDM", "Post-Rock"]
-    static let keys = ["C major", "A minor", "D minor", "B minor", "F# minor", "E minor"]
+    static let keys = ["C", "C# / Db", "D", "D# / Eb", "E", "F", "F# / Gb", "G", "G# / Ab", "A", "A# / Bb", "B"]
+    static let modes = [
+        "Ionian / major",
+        "Dorian",
+        "Phrygian",
+        "Lydian",
+        "Mixolydian",
+        "Aeolian / natural minor",
+        "Locrian",
+        "Harmonic minor",
+        "Melodic minor",
+        "Phrygian dominant",
+        "Lydian dominant",
+        "Dorian b2",
+        "Lydian augmented",
+        "Mixolydian b6",
+        "Locrian natural 2",
+        "Altered / super Locrian",
+        "Major pentatonic",
+        "Minor pentatonic",
+        "Blues scale",
+        "Whole tone",
+        "Diminished / octatonic",
+        "Chromatic"
+    ]
     static let timeSignatures = ["4/4", "3/4", "6/8", "5/4", "7/8", "9/8", "11/8"]
     static let moods = ["Longing", "Nostalgia", "Isolation", "Hope", "Grief", "Triumph", "Romance", "Despair", "Catharsis", "Anger", "Wonder", "Melancholy", "Apocalyptic", "Bittersweet"]
     static let vocalTypes = ["Female lead", "Male lead", "Duet", "Choir", "Spoken word", "Instrumental"]
@@ -185,7 +235,8 @@ extension PromptPreset {
             genres: ["Dream Pop", "Shoegaze"],
             moods: ["Longing", "Nostalgia", "Bittersweet"],
             bpm: 92,
-            key: "B minor",
+            key: "B",
+            mode: "Aeolian / natural minor",
             timeSignature: "6/8",
             vocalType: "Female lead",
             vocalStyles: ["intimate", "layered harmonies"],
@@ -207,7 +258,8 @@ extension PromptPreset {
             genres: ["Black Metal", "Groove Metal", "Industrial"],
             moods: ["Anger", "Catharsis", "Apocalyptic"],
             bpm: 148,
-            key: "F# minor",
+            key: "F# / Gb",
+            mode: "Phrygian dominant",
             timeSignature: "4/4",
             vocalType: "Male lead",
             vocalStyles: ["gritty", "screams", "growls"],
@@ -228,7 +280,8 @@ extension PromptPreset {
             genres: ["Industrial", "Dub", "Synthwave"],
             moods: ["Isolation", "Wonder", "Melancholy"],
             bpm: 104,
-            key: "D minor",
+            key: "D",
+            mode: "Dorian",
             timeSignature: "4/4",
             vocalType: "Spoken word",
             vocalStyles: ["whispered", "vocoder backing vocals"],
@@ -247,7 +300,8 @@ extension PromptPreset {
             genres: ["Post-Rock", "Ambient"],
             moods: ["Hope", "Triumph", "Catharsis"],
             bpm: 76,
-            key: "E minor",
+            key: "E",
+            mode: "Aeolian / natural minor",
             timeSignature: "5/4",
             vocalType: "Instrumental",
             instruments: ["clean electric guitar", "cinematic strings", "warm piano", "field recordings"],
@@ -266,7 +320,8 @@ extension PromptPreset {
             genres: ["Folk", "Dream Pop"],
             moods: ["Melancholy", "Romance", "Grief"],
             bpm: 68,
-            key: "A minor",
+            key: "A",
+            mode: "Aeolian / natural minor",
             vocalType: "Female lead",
             vocalStyles: ["intimate", "clean", "layered harmonies"],
             vocalDistance: 0.12,
@@ -286,7 +341,8 @@ extension PromptPreset {
             genres: ["Death Metal", "Black Metal", "Ambient"],
             moods: ["Apocalyptic", "Despair", "Wonder"],
             bpm: 132,
-            key: "F# minor",
+            key: "F# / Gb",
+            mode: "Locrian",
             timeSignature: "7/8",
             vocalType: "Choir",
             vocalStyles: ["powerful", "layered harmonies", "growls"],

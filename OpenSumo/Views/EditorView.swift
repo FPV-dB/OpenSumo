@@ -63,8 +63,11 @@ struct EditorView: View {
                     .frame(width: 42, alignment: .trailing)
             }
             HStack {
-                Picker("Key", selection: $viewModel.currentPreset.key) {
+                Picker("Root Key", selection: $viewModel.currentPreset.key) {
                     ForEach(PromptOptions.keys, id: \.self) { Text($0).tag($0) }
+                }
+                Picker("Mode", selection: $viewModel.currentPreset.mode) {
+                    ForEach(PromptOptions.modes, id: \.self) { Text($0).tag($0) }
                 }
                 Picker("Time Signature", selection: $viewModel.currentPreset.timeSignature) {
                     ForEach(PromptOptions.timeSignatures, id: \.self) { Text($0).tag($0) }
