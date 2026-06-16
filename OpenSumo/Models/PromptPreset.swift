@@ -477,7 +477,17 @@ extension PromptPreset {
         hybridPreset("Afro-Futurist Funk", ["Afro-Futurist Funk", "Afrobeat Funk", "Future Funk"], ["Futuristic", "Celebration", "Cosmic"], bpm: 116, key: "E", mode: "Mixolydian", vocalType: "Choir"),
         hybridPreset("Funk Noir", ["Funk Noir", "Detective Funk", "Dark Funk"], ["Night-Time", "Mystical", "Urban"], bpm: 92, key: "D# / Eb", mode: "Aeolian / natural minor", vocalType: "Spoken word"),
         hybridPreset("Dub Funk Odyssey", ["Dub Funk Odyssey", "Dub Funk", "Space Dub"], ["Cosmic", "Dreamlike", "Oceanic"], bpm: 78, key: "G", mode: "Dorian", vocalType: "Instrumental"),
-        hybridPreset("Vintage Detective Funk", ["Vintage Detective Funk", "Detective Funk", "Library Funk"], ["Urban", "Noir", "Suspenseful"], bpm: 102, key: "A", mode: "Harmonic minor", vocalType: "Instrumental")
+        hybridPreset("Vintage Detective Funk", ["Vintage Detective Funk", "Detective Funk", "Library Funk"], ["Urban", "Noir", "Suspenseful"], bpm: 102, key: "A", mode: "Harmonic minor", vocalType: "Instrumental"),
+        hybridPreset("Cyberpunk Rainstorm", ["Cyberpunk Rainstorm", "Cyberpunk Electronica", "Rainy Night Funk"], ["Futuristic", "Nocturnal", "Dystopian"], bpm: 104, key: "D", mode: "Dorian", vocalType: "Spoken word"),
+        hybridPreset("Blade Runner Atmosphere", ["Blade Runner Atmosphere", "Noir Electronica", "Dark Ambient"], ["Nocturnal", "Urban", "Melancholic"], bpm: 78, key: "F# / Gb", mode: "Lydian", vocalType: "Instrumental"),
+        hybridPreset("Soviet Space Electronica", ["Soviet Space Electronica", "Space Exploration Electronica", "Analog Synth Music"], ["Cosmic", "Nostalgic", "Lonely"], bpm: 92, key: "C", mode: "Lydian", vocalType: "Instrumental"),
+        hybridPreset("Deep Ocean Sonar Ambient", ["Deep Ocean Sonar Ambient", "Oceanic Ambient", "Minimal Drone"], ["Oceanic", "Mystical", "Lonely"], bpm: 48, key: "C# / Db", mode: "Whole tone", vocalType: "Instrumental"),
+        hybridPreset("Numbers Station Electronica", ["Numbers Station Electronica", "Shortwave Interference", "Dystopian Electronica"], ["Dystopian", "Nocturnal", "Mystical"], bpm: 66, key: "D", mode: "Phrygian", vocalType: "Spoken word"),
+        hybridPreset("Neon City Downtempo", ["Neon City Downtempo", "Cinematic Downtempo", "Noir Electronica"], ["Urban", "Nocturnal", "Romantic"], bpm: 86, key: "A", mode: "Dorian", vocalType: "Female lead"),
+        hybridPreset("Ritual Desert Electronica", ["Ritual Desert Electronica", "Tribal Electronica", "Shamanic Psy"], ["Mystical", "Sacred", "Rural"], bpm: 100, key: "E", mode: "Phrygian dominant", vocalType: "Choir"),
+        hybridPreset("Cathedral of Circuits", ["Cathedral of Circuits", "Sacred Ambient", "Generative Electronic"], ["Sacred", "Futuristic", "Ethereal"], bpm: 72, key: "G", mode: "Lydian", vocalType: "Choir"),
+        hybridPreset("Forgotten Satellite Broadcast", ["Forgotten Satellite Broadcast", "Signalwave", "Space Ambient"], ["Cosmic", "Lonely", "Nostalgic"], bpm: 58, key: "B", mode: "Aeolian / natural minor", vocalType: "Instrumental"),
+        hybridPreset("Long Night Highway Electronica", ["Long Night Highway Electronica", "Atmospheric Downtempo", "Analog Synthwave"], ["Nocturnal", "Longing", "Urban"], bpm: 96, key: "E", mode: "Mixolydian", vocalType: "Female lead")
     ]
 
     private static func hybridPreset(_ name: String, _ genres: [String], _ moods: [String], bpm: Double, key: String, mode: String, vocalType: String) -> PromptPreset {
