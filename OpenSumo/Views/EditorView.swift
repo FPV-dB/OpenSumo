@@ -9,6 +9,7 @@ struct EditorView: View {
                 VStack(alignment: .leading, spacing: 18) {
                     header
                     sectionCard("Style", id: "Style") { styleSection }
+                    sectionCard("Advanced Time", id: "Advanced Time") { advancedTimeSection }
                     sectionCard("Mood", id: "Mood") { moodSection }
                     sectionCard("Vocals", id: "Vocals") { vocalsSection }
                     sectionCard("Instruments", id: "Instruments") { instrumentsSection }
@@ -78,6 +79,28 @@ struct EditorView: View {
 
     private var moodSection: some View {
         MultiSelectChipView(title: "Mood", options: PromptOptions.moods, selection: $viewModel.currentPreset.moods)
+    }
+
+    private var advancedTimeSection: some View {
+        VStack(alignment: .leading, spacing: 18) {
+            MultiSelectChipView(
+                title: "Additional Time Signatures",
+                options: PromptOptions.timeSignatures.filter { $0 != viewModel.currentPreset.timeSignature },
+                selection: $viewModel.currentPreset.alternateTimeSignatures
+            )
+
+            HStack {
+                Picker("Tempo Feel", selection: $viewModel.currentPreset.tempoFeel) {
+                    ForEach(PromptOptions.tempoFeels, id: \.self) { Text($0).tag($0) }
+                }
+                Picker("Tempo Map", selection: $viewModel.currentPreset.tempoMap) {
+                    ForEach(PromptOptions.tempoMaps, id: \.self) { Text($0).tag($0) }
+                }
+            }
+
+            labeledSlider("Swing Amount", leading: "straight", trailing: "heavy swing", value: $viewModel.currentPreset.swingAmount)
+            labeledSlider("Tempo Humanization", leading: "grid-tight", trailing: "live drift", value: $viewModel.currentPreset.tempoHumanization)
+        }
     }
 
     private var vocalsSection: some View {

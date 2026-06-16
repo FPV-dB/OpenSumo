@@ -9,6 +9,11 @@ struct PromptPreset: Identifiable, Codable, Equatable {
     var key: String
     var mode: String
     var timeSignature: String
+    var alternateTimeSignatures: [String]
+    var tempoFeel: String
+    var tempoMap: String
+    var swingAmount: Double
+    var tempoHumanization: Double
     var vocalType: String
     var vocalStyles: [String]
     var vocalDistance: Double
@@ -39,6 +44,11 @@ struct PromptPreset: Identifiable, Codable, Equatable {
         key: String = "B",
         mode: String = "Aeolian / natural minor",
         timeSignature: String = "4/4",
+        alternateTimeSignatures: [String] = [],
+        tempoFeel: String = "straight",
+        tempoMap: String = "steady tempo",
+        swingAmount: Double = 0,
+        tempoHumanization: Double = 0.12,
         vocalType: String = "Female lead",
         vocalStyles: [String] = [],
         vocalDistance: Double = 0.25,
@@ -68,6 +78,11 @@ struct PromptPreset: Identifiable, Codable, Equatable {
         self.key = key
         self.mode = mode
         self.timeSignature = timeSignature
+        self.alternateTimeSignatures = alternateTimeSignatures
+        self.tempoFeel = tempoFeel
+        self.tempoMap = tempoMap
+        self.swingAmount = swingAmount
+        self.tempoHumanization = tempoHumanization
         self.vocalType = vocalType
         self.vocalStyles = vocalStyles
         self.vocalDistance = vocalDistance
@@ -101,6 +116,11 @@ extension PromptPreset {
         case key
         case mode
         case timeSignature
+        case alternateTimeSignatures
+        case tempoFeel
+        case tempoMap
+        case swingAmount
+        case tempoHumanization
         case vocalType
         case vocalStyles
         case vocalDistance
@@ -136,6 +156,11 @@ extension PromptPreset {
         key = normalized.key
         mode = normalized.mode
         timeSignature = try container.decodeIfPresent(String.self, forKey: .timeSignature) ?? "4/4"
+        alternateTimeSignatures = try container.decodeIfPresent([String].self, forKey: .alternateTimeSignatures) ?? []
+        tempoFeel = try container.decodeIfPresent(String.self, forKey: .tempoFeel) ?? "straight"
+        tempoMap = try container.decodeIfPresent(String.self, forKey: .tempoMap) ?? "steady tempo"
+        swingAmount = try container.decodeIfPresent(Double.self, forKey: .swingAmount) ?? 0
+        tempoHumanization = try container.decodeIfPresent(Double.self, forKey: .tempoHumanization) ?? 0.12
         vocalType = try container.decodeIfPresent(String.self, forKey: .vocalType) ?? "Female lead"
         vocalStyles = try container.decodeIfPresent([String].self, forKey: .vocalStyles) ?? []
         vocalDistance = try container.decodeIfPresent(Double.self, forKey: .vocalDistance) ?? 0.25
@@ -186,7 +211,7 @@ enum PromptDetailLevel: String, CaseIterable, Identifiable, Codable {
 }
 
 enum PromptOptions {
-    static let sections = ["Style", "Mood", "Vocals", "Instruments", "Production", "Effects", "Arrangement", "Advanced"]
+    static let sections = ["Style", "Advanced Time", "Mood", "Vocals", "Instruments", "Production", "Effects", "Arrangement", "Advanced"]
     static let genres = ["Dream Pop", "Shoegaze", "Industrial", "Synthwave", "Black Metal", "Death Metal", "Groove Metal", "Country", "Folk", "Ambient", "Dub", "EDM", "Post-Rock"]
     static let keys = ["C", "C# / Db", "D", "D# / Eb", "E", "F", "F# / Gb", "G", "G# / Ab", "A", "A# / Bb", "B"]
     static let modes = [
@@ -213,7 +238,9 @@ enum PromptOptions {
         "Diminished / octatonic",
         "Chromatic"
     ]
-    static let timeSignatures = ["4/4", "3/4", "6/8", "5/4", "7/8", "9/8", "11/8"]
+    static let timeSignatures = ["2/4", "3/4", "4/4", "5/4", "6/4", "7/4", "2/2", "3/8", "5/8", "6/8", "7/8", "9/8", "11/8", "12/8", "13/8", "15/8", "3+2/8", "2+3/8", "2+2+3/8", "3+2+2/8", "4+3/8", "5+4/8", "7+4/8", "17/16"]
+    static let tempoFeels = ["straight", "laid-back", "pushing forward", "behind the beat", "driving", "floating", "mechanical", "loose live band", "rubato", "half-time feel", "double-time feel", "four-on-the-floor", "breakbeat", "shuffle", "triplet feel"]
+    static let tempoMaps = ["steady tempo", "subtle tempo drift", "gradual accelerando", "gradual ritardando", "verse slower than chorus", "chorus lifts by 4 BPM", "breakdown drops to half-time", "final chorus pushes faster", "free-time intro into locked groove"]
     static let moods = ["Longing", "Nostalgia", "Isolation", "Hope", "Grief", "Triumph", "Romance", "Despair", "Catharsis", "Anger", "Wonder", "Melancholy", "Apocalyptic", "Bittersweet"]
     static let vocalTypes = ["Female lead", "Male lead", "Duet", "Choir", "Spoken word", "Instrumental"]
     static let vocalStyles = ["intimate", "whispered", "powerful", "clean", "gritty", "layered harmonies", "vocoder backing vocals", "screams", "growls"]

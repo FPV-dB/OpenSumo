@@ -12,6 +12,10 @@ struct PromptGenerator {
         parts.append("\(Int(preset.bpm.rounded())) BPM")
         parts.append("\(preset.key) \(preset.mode)")
         parts.append("\(preset.timeSignature) time")
+        let timeDetails = advancedTimeDetails(from: preset)
+        if !timeDetails.isEmpty {
+            parts.append(timeDetails)
+        }
 
         if !preset.genres.isEmpty {
             let joinedGenres = naturalList(preset.genres.map { $0.lowercased() })
@@ -87,6 +91,26 @@ struct PromptGenerator {
         let clean = values.filter { !$0.isEmpty }
         guard clean.count > 1 else { return clean.first ?? "" }
         return clean.dropLast().joined(separator: ", ") + " and " + (clean.last ?? "")
+    }
+
+    private func advancedTimeDetails(from preset: PromptPreset) -> String {
+        var details: [String] = []
+        if !preset.alternateTimeSignatures.isEmpty {
+            details.append("moves through \(naturalList(preset.alternateTimeSignatures)) sections")
+        }
+        if preset.tempoFeel != "straight" {
+            details.append(preset.tempoFeel)
+        }
+        if preset.tempoMap != "steady tempo" {
+            details.append(preset.tempoMap)
+        }
+        if preset.swingAmount > 0.08 {
+            details.append("\(amountPhrase(preset.swingAmount)) swing")
+        }
+        if preset.tempoHumanization > 0.08 {
+            details.append("\(amountPhrase(preset.tempoHumanization)) tempo humanization")
+        }
+        return details.joined(separator: ", ")
     }
 
     private func stylePhrase(for detailLevel: PromptDetailLevel, variant: Int) -> String {
