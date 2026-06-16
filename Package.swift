@@ -12,7 +12,11 @@ let package = Package(
     targets: [
         .executableTarget(
             name: "OpenSumo",
-            path: "OpenSumo"
+            path: "OpenSumo",
+            resources: [
+                .copy("../Resources/OpenSumoIcon.icns"),
+                .copy("../Resources/OpenSumoIcon.png")
+            ]
         )
     ]
 )
