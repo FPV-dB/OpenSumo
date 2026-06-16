@@ -211,7 +211,7 @@ enum PromptDetailLevel: String, CaseIterable, Identifiable, Codable {
 }
 
 enum PromptOptions {
-    static let sections = ["Style", "Advanced Time", "Mood", "Vocals", "Instruments", "Production", "Effects", "Arrangement", "Advanced"]
+    static let sections = ["Randomise", "Style", "Advanced Time", "Mood", "Vocals", "Instruments", "Production", "Effects", "Arrangement", "Advanced"]
     static let contemporaryGenres = [
         "Dream Pop", "Shoegaze", "Industrial", "Synthwave", "Black Metal", "Death Metal", "Groove Metal", "Country", "Folk", "Ambient", "Dub", "EDM", "Post-Rock",
         "Alternative Rock", "Indie Rock", "Garage Rock", "Noise Rock", "Math Rock", "Art Rock", "Goth Rock", "Post-Punk", "Darkwave", "Coldwave", "New Wave", "No Wave", "Psychedelic Rock", "Stoner Rock", "Desert Rock", "Krautrock", "Progressive Rock", "Space Rock",

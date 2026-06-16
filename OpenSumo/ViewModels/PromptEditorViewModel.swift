@@ -119,6 +119,47 @@ final class PromptEditorViewModel: ObservableObject {
         saveAllPresets()
     }
 
+    func randomiseCoreMusicSettings() {
+        randomiseGenreType()
+        randomiseKeyAndMode()
+        randomiseTimeSignature()
+        randomiseTempo()
+    }
+
+    func randomiseStyle() {
+        let conventionalStyles = styleTags.filter { !["Atmosphere Tags", "Production Styles"].contains($0.category) }.map(\.name)
+        currentPreset.genres = randomSelection(from: conventionalStyles.isEmpty ? PromptOptions.genres : conventionalStyles, count: Int.random(in: 2...5))
+    }
+
+    func randomiseGenreType() {
+        let grouped = Dictionary(grouping: styleTags.filter { !["Atmosphere Tags", "Production Styles"].contains($0.category) }, by: \.category)
+        guard let category = grouped.keys.sorted().randomElement(), let tags = grouped[category] else {
+            randomiseStyle()
+            return
+        }
+        currentPreset.genres = randomSelection(from: tags.map(\.name), count: Int.random(in: 2...min(5, max(2, tags.count))))
+    }
+
+    func randomiseTimeSignature() {
+        currentPreset.timeSignature = PromptOptions.timeSignatures.randomElement() ?? "4/4"
+        currentPreset.alternateTimeSignatures = Bool.random()
+            ? randomSelection(from: PromptOptions.timeSignatures.filter { $0 != currentPreset.timeSignature }, count: Int.random(in: 1...3))
+            : []
+    }
+
+    func randomiseKeyAndMode() {
+        currentPreset.key = PromptOptions.keys.randomElement() ?? "C"
+        currentPreset.mode = PromptOptions.modes.randomElement() ?? "Ionian / major"
+    }
+
+    func randomiseTempo() {
+        currentPreset.bpm = Double(Int.random(in: 40...220))
+        currentPreset.tempoFeel = PromptOptions.tempoFeels.randomElement() ?? "straight"
+        currentPreset.tempoMap = PromptOptions.tempoMaps.randomElement() ?? "steady tempo"
+        currentPreset.swingAmount = Double.random(in: 0...0.75)
+        currentPreset.tempoHumanization = Double.random(in: 0...0.65)
+    }
+
     func deletePreset() {
         guard presets.count > 1 else {
             newPrompt()

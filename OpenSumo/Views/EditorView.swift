@@ -8,6 +8,7 @@ struct EditorView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 18) {
                     header
+                    sectionCard("Randomise", id: "Randomise") { randomiseSection }
                     sectionCard("Style", id: "Style") { styleSection }
                     sectionCard("Advanced Time", id: "Advanced Time") { advancedTimeSection }
                     sectionCard("Mood", id: "Mood") { moodSection }
@@ -51,6 +52,29 @@ struct EditorView: View {
         .background(AppTheme.panel, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
         .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).strokeBorder(AppTheme.border, lineWidth: 1))
         .id(id)
+    }
+
+    private var randomiseSection: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Text("Randomise specific musical dimensions without replacing the whole preset.")
+                .foregroundStyle(AppTheme.secondaryText)
+
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 190), spacing: 10)], alignment: .leading, spacing: 10) {
+                randomiseButton("All Core Settings", action: viewModel.randomiseCoreMusicSettings)
+                randomiseButton("Style Tags", action: viewModel.randomiseStyle)
+                randomiseButton("Genre Type", action: viewModel.randomiseGenreType)
+                randomiseButton("Time Signature", action: viewModel.randomiseTimeSignature)
+                randomiseButton("Key + Mode", action: viewModel.randomiseKeyAndMode)
+                randomiseButton("Tempo", action: viewModel.randomiseTempo)
+            }
+        }
+    }
+
+    private func randomiseButton(_ title: String, action: @escaping () -> Void) -> some View {
+        Button(title, action: action)
+            .buttonStyle(.borderedProminent)
+            .controlSize(.large)
+            .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private var styleSection: some View {
