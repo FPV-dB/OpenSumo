@@ -447,7 +447,17 @@ extension PromptPreset {
         hybridPreset("Last Train Home", ["Last Train Home", "Post-Rock Cinematic", "Ambient Pop"], ["Longing", "Night-Time", "Hopeful"], bpm: 92, key: "E", mode: "Mixolydian", vocalType: "Female lead"),
         hybridPreset("Cold War Numbers Station", ["Cold War Numbers Station", "Industrial Ambient", "Radio Broadcast"], ["Dystopian", "Haunted", "Night-Time"], bpm: 66, key: "D", mode: "Phrygian", vocalType: "Spoken word"),
         hybridPreset("Arctic Research Station Ambient", ["Arctic Research Station Ambient", "Isolationist Ambient", "Cinematic Ambient"], ["Winter", "Isolated", "Cosmic"], bpm: 52, key: "C", mode: "Lydian", vocalType: "Instrumental"),
-        hybridPreset("Abandoned Cathedral Choir", ["Abandoned Cathedral Choir", "Sacred Choral", "Dark Ambient"], ["Sacred", "Haunted", "Grief"], bpm: 60, key: "G", mode: "Aeolian / natural minor", vocalType: "Choir")
+        hybridPreset("Abandoned Cathedral Choir", ["Abandoned Cathedral Choir", "Sacred Choral", "Dark Ambient"], ["Sacred", "Haunted", "Grief"], bpm: 60, key: "G", mode: "Aeolian / natural minor", vocalType: "Choir"),
+        hybridPreset("Industrial Pop Noir", ["Industrial Pop Noir", "Industrial Pop", "Noir Pop"], ["Night-Time", "Urban", "Melancholic"], bpm: 104, key: "D", mode: "Dorian", vocalType: "Female lead"),
+        hybridPreset("Gothic Synth Pop", ["Gothic Synth Pop", "Gothic Pop", "Synth Pop"], ["Romantic", "Haunted", "Nostalgic"], bpm: 112, key: "A", mode: "Aeolian / natural minor", vocalType: "Duet"),
+        hybridPreset("Cathedral Pop", ["Cathedral Pop", "Orchestral Pop", "Sacred Choral"], ["Sacred", "Ethereal", "Triumphant"], bpm: 92, key: "C", mode: "Ionian / major", vocalType: "Choir"),
+        hybridPreset("Hyperpop Meltdown", ["Hyperpop Meltdown", "Hyperpop", "Glitch Pop"], ["Cathartic", "Futuristic", "Apocalyptic"], bpm: 168, key: "F# / Gb", mode: "Lydian", vocalType: "Female lead"),
+        hybridPreset("Nordic Winter Pop", ["Nordic Winter Pop", "Nordic Pop", "Winter Pop"], ["Winter", "Longing", "Ethereal"], bpm: 86, key: "E", mode: "Aeolian / natural minor", vocalType: "Female lead"),
+        hybridPreset("Analog Nostalgia Pop", ["Analog Nostalgia Pop", "Vintage Tape", "Nostalgic Pop"], ["Nostalgic", "Warm", "Bittersweet"], bpm: 94, key: "G", mode: "Ionian / major", vocalType: "Male lead"),
+        hybridPreset("Oceanic Dream Pop", ["Oceanic Dream Pop", "Dream Pop", "Oceanic Pop"], ["Oceanic", "Dreamlike", "Longing"], bpm: 88, key: "D", mode: "Lydian", vocalType: "Female lead"),
+        hybridPreset("Japanese City Pop Revival", ["Japanese City Pop Revival", "City Pop", "J-Pop"], ["Night-Time", "Urban", "Nostalgic"], bpm: 108, key: "A", mode: "Mixolydian", vocalType: "Female lead"),
+        hybridPreset("Haunted Mall Pop", ["Haunted Mall Pop", "Mallsoft", "Dark Pop"], ["Haunted", "Nostalgic", "Lonely"], bpm: 78, key: "F", mode: "Lydian", vocalType: "Instrumental"),
+        hybridPreset("Late-Night Radio Pop", ["Late-Night Radio Pop", "Radio Pop", "Warm Cassette Pop"], ["Night-Time", "Romantic", "Reflective"], bpm: 82, key: "B", mode: "Aeolian / natural minor", vocalType: "Male lead")
     ]
 
     private static func hybridPreset(_ name: String, _ genres: [String], _ moods: [String], bpm: Double, key: String, mode: String, vocalType: String) -> PromptPreset {
