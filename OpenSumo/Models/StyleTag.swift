@@ -14,6 +14,9 @@ enum StyleTagCategoryDisplay {
         if category.hasPrefix("Rock - ") {
             return "Rock"
         }
+        if category.hasPrefix("Funk - ") {
+            return "Funk"
+        }
         return category
     }
 }
@@ -104,6 +107,40 @@ enum StyleTagCatalog {
         ("Pop - Hybrid Presets", ["Dream Pop Heartbreak", "Shoegaze Pop", "Industrial Pop Noir", "Gothic Synth Pop", "Cathedral Pop", "Cinematic Dark Pop", "Hyperpop Meltdown", "Nordic Winter Pop", "Analog Nostalgia Pop", "Rainy Night Pop", "Urban Isolation Pop", "Oceanic Dream Pop", "Cosmic Synth Pop", "Desert Pop", "Ethereal Choir Pop", "Apocalyptic Pop Anthem", "Post-Rock Pop", "Blackgaze Pop", "Trip-Hop Pop", "Industrial Dub Pop", "Celtic Dream Pop", "Japanese City Pop Revival", "Soviet Synth Pop", "Arctic Midnight Pop", "Haunted Mall Pop", "Retro-Futurist Pop", "Lonely Suburb Pop", "Last Train Home Pop", "Late-Night Radio Pop", "Warm Cassette Pop"]),
         ("Hip Hop", ["Old School Hip Hop", "Boom Bap", "Conscious Hip Hop", "Alternative Hip Hop", "Jazz Rap", "Gangsta Rap", "Trap", "Drill", "Cloud Rap", "Lo-Fi Hip Hop", "Experimental Hip Hop", "Horrorcore"]),
         ("Soul / R&B", ["Soul", "Neo Soul", "Motown", "Funk", "Contemporary R&B", "Quiet Storm", "Smooth Soul", "Gospel"]),
+        ("Funk", ["Funk", "Early Funk", "Classic Funk", "Traditional Funk", "Vintage Funk", "Raw Funk", "Deep Funk", "Pure Funk", "Old School Funk", "Golden Age Funk", "Soul Funk"]),
+        ("Funk - 1960s", ["Proto-Funk", "Southern Soul Funk", "Memphis Funk", "New Orleans Funk", "Organ Funk", "R&B Funk", "Funk Blues"]),
+        ("Funk - 1970s", ["P-Funk", "Parliament Style Funk", "Funkadelic Style Funk", "Cosmic Funk", "Psychedelic Funk", "Space Funk", "Disco Funk", "Jazz Funk", "Rock Funk", "Hard Funk", "Street Funk", "Party Funk"]),
+        ("Funk - 1980s", ["Electro Funk", "Synth Funk", "Boogie Funk", "Post-Disco Funk", "Funk Pop", "Digital Funk", "Drum Machine Funk", "Modern Funk"]),
+        ("Funk - 1990s", ["Acid Jazz Funk", "Rare Groove Revival", "Jam Band Funk", "Neo-Funk", "Alternative Funk", "Funk Rock Revival"]),
+        ("Funk - 2000s+", ["Nu-Funk", "Contemporary Funk", "Future Funk", "Indie Funk", "Electro Soul Funk", "Modern Boogie", "Neo-Soul Funk"]),
+        ("Funk - P-Funk Family", ["P-Funk", "Cosmic P-Funk", "Psychedelic P-Funk", "Space P-Funk", "Deep P-Funk", "Heavy P-Funk", "Funk Opera", "Afrofuturist Funk"]),
+        ("Funk - Soul-Influenced", ["Soul Funk", "Deep Soul Funk", "Southern Soul Funk", "Memphis Soul Funk", "Gospel Funk", "Neo Soul Funk", "Retro Soul Funk"]),
+        ("Funk - Jazz-Influenced", ["Jazz Funk", "Fusion Funk", "Smooth Jazz Funk", "Bebop Funk", "Modal Funk", "Contemporary Jazz Funk", "Acid Jazz", "Lounge Funk"]),
+        ("Funk - Rock-Influenced", ["Funk Rock", "Hard Funk Rock", "Alternative Funk Rock", "Psychedelic Funk Rock", "Blues Funk Rock", "Arena Funk Rock", "Jam Funk Rock"]),
+        ("Funk - Punk-Influenced", ["Punk Funk", "Post-Punk Funk", "Dance Punk", "Art Punk Funk", "New Wave Funk"]),
+        ("Funk - Metal-Influenced", ["Funk Metal", "Alternative Funk Metal", "Heavy Funk Metal", "Groove Funk Metal", "Progressive Funk Metal"]),
+        ("Funk - Disco Family", ["Disco Funk", "Nu Disco Funk", "Boogie Funk", "Sophisticated Disco Funk", "Studio Disco Funk", "Chic Style Funk"]),
+        ("Funk - Electronic Family", ["Electro Funk", "Synth Funk", "Digital Funk", "Future Funk", "Vapor Funk", "Cyber Funk", "Retrofuturist Funk", "Electro Soul Funk"]),
+        ("Funk - Hip-Hop Influenced", ["Hip-Hop Funk", "G-Funk", "West Coast G-Funk", "Gangsta Funk", "Boom Bap Funk", "Funk Breakbeat", "Sample-Based Funk"]),
+        ("Funk - G-Funk Family", ["Classic G-Funk", "West Coast G-Funk", "Synth G-Funk", "Lowrider Funk", "Smooth G-Funk", "Chopper Funk"]),
+        ("Funk - Rare Groove Family", ["Rare Groove", "Deep Rare Groove", "Collector Rare Groove", "Library Funk", "Crate-Digger Funk", "Vintage Groove"]),
+        ("Funk - Afro-Funk Family", ["Afro Funk", "Afrobeat Funk", "Nigerian Funk", "Ghanaian Funk", "Ethiopian Funk", "Afro-Psychedelic Funk", "Tribal Funk", "Afro Groove"]),
+        ("Funk - Latin Funk Family", ["Latin Funk", "Salsa Funk", "Cuban Funk", "Brazilian Funk", "Samba Funk", "Funk Carioca", "Tropical Funk", "Afro-Latin Funk"]),
+        ("Funk - Brazilian", ["Funk Carioca", "Rio Funk", "Baile Funk", "Brazilian Soul Funk", "Samba Funk"]),
+        ("Funk - Caribbean", ["Reggae Funk", "Dub Funk", "Island Funk", "Calypso Funk", "Soca Funk"]),
+        ("Funk - World Funk", ["Balkan Funk", "Middle Eastern Funk", "Arabic Funk", "Persian Funk", "Turkish Funk", "Indian Funk", "Japanese Funk", "Korean Funk", "Nordic Funk"]),
+        ("Funk - Japanese Funk", ["City Pop Funk", "Japanese Jazz Funk", "Tokyo Disco Funk", "Shibuya Funk", "Anime Funk"]),
+        ("Funk - Experimental", ["Avant-Funk", "Art Funk", "Experimental Groove", "Abstract Funk", "Noise Funk", "Industrial Funk", "Glitch Funk", "Deconstructed Funk"]),
+        ("Funk - Industrial & Dark", ["Industrial Funk", "Dark Funk", "Gothic Funk", "Cyber Funk", "Dystopian Funk", "Machine Funk"]),
+        ("Funk - Cinematic", ["Spy Funk", "Blaxploitation Funk", "Crime Funk", "Detective Funk", "Action Funk", "Retro Soundtrack Funk", "Cop Show Funk"]),
+        ("Funk - Lounge & Luxury", ["Cocktail Funk", "Lounge Funk", "Yacht Funk", "Luxury Funk", "Sunset Funk", "Poolside Funk"]),
+        ("Funk - Groove-Based Variants", ["Pocket Funk", "Deep Pocket Funk", "Heavy Groove Funk", "Minimal Groove Funk", "Syncopated Funk", "Percussive Funk", "Bass-Driven Funk", "Drum-Centric Funk"]),
+        ("Funk - Jam Band Funk", ["Jam Funk", "Extended Groove Funk", "Improvisational Funk", "Festival Funk", "Live Funk"]),
+        ("Funk - Mood Presets", ["Party Funk", "Celebration Funk", "Summer Funk", "Beach Funk", "Night Drive Funk", "Urban Funk", "Rainy Night Funk", "Cosmic Funk", "Melancholic Funk", "Romantic Funk", "Seductive Funk", "Energetic Funk", "Euphoric Funk"]),
+        ("Funk - Hybrid Presets", ["Cosmic P-Funk Odyssey", "Blade Runner Funk", "Cyberpunk Funk", "Industrial Nightclub Funk", "Desert Funk Caravan", "Funky Space Station", "Soviet Electro Funk", "Nordic Winter Funk", "Japanese City Pop Funk", "Rainy Neon Funk", "Gothic Cathedral Funk", "Retro Cop Show Funk", "Midnight Lowrider Funk", "Analog Tape Funk", "Ocean Sunset Funk", "Psychedelic Festival Funk", "Deep Space Funk", "Afro-Futurist Funk", "Tribal Cyber Funk", "Funk Noir", "Post-Apocalyptic Funk", "Dream Funk", "Shoegaze Funk", "Dub Funk Odyssey", "Library Music Funk", "Vintage Detective Funk"]),
+        ("Bass Style", ["Slap Bass", "Fingerstyle Bass", "Thumb Bass", "Muted Bass", "Synth Bass", "Moog Bass", "Fretless Bass"]),
+        ("Groove Style", ["Deep Pocket", "Syncopated", "Shuffle Groove", "Straight Groove", "Half-Time Groove", "Four-on-the-Floor"]),
+        ("Era", ["1960s", "1970s", "1980s", "1990s", "Modern"]),
         ("Jazz", ["Traditional Jazz", "Swing", "Big Band", "Bebop", "Hard Bop", "Cool Jazz", "Modal Jazz", "Free Jazz", "Fusion", "Jazz-Funk", "Smooth Jazz", "Latin Jazz", "Contemporary Jazz"]),
         ("Blues", ["Delta Blues", "Chicago Blues", "Electric Blues", "Country Blues", "Texas Blues", "Blues Rock"]),
         ("Folk & Acoustic", ["Folk", "Contemporary Folk", "Indie Folk", "Dark Folk", "Neofolk", "Acoustic", "Singer-Songwriter", "Celtic Folk", "Nordic Folk", "Appalachian Folk", "Americana"]),

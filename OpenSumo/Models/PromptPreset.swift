@@ -467,7 +467,17 @@ extension PromptPreset {
         hybridPreset("Cosmic Space Rock", ["Cosmic Space Rock", "Space Rock", "Cosmic Rock"], ["Cosmic", "Dreamlike", "Triumphant"], bpm: 118, key: "F# / Gb", mode: "Lydian", vocalType: "Instrumental"),
         hybridPreset("Apocalyptic Arena Rock", ["Apocalyptic Arena Rock", "Arena Rock", "Apocalyptic Rock"], ["Apocalyptic", "Heroic", "Triumphant"], bpm: 128, key: "D", mode: "Phrygian dominant", vocalType: "Male lead"),
         hybridPreset("Cinematic Slowcore", ["Cinematic Slowcore", "Slowcore", "Cinematic Rock"], ["Melancholic", "Longing", "Reflective"], bpm: 64, key: "A", mode: "Aeolian / natural minor", vocalType: "Female lead"),
-        hybridPreset("Forgotten City Indie Rock", ["Forgotten City Indie Rock", "Indie Rock", "Urban Rock"], ["Urban", "Haunted", "Nostalgic"], bpm: 98, key: "E", mode: "Dorian", vocalType: "Male lead")
+        hybridPreset("Forgotten City Indie Rock", ["Forgotten City Indie Rock", "Indie Rock", "Urban Rock"], ["Urban", "Haunted", "Nostalgic"], bpm: 98, key: "E", mode: "Dorian", vocalType: "Male lead"),
+        hybridPreset("Cosmic P-Funk Odyssey", ["Cosmic P-Funk Odyssey", "Cosmic P-Funk", "Afrofuturist Funk"], ["Cosmic", "Euphoric", "Futuristic"], bpm: 108, key: "G", mode: "Mixolydian", vocalType: "Choir"),
+        hybridPreset("Blade Runner Funk", ["Blade Runner Funk", "Cyber Funk", "Dystopian Funk"], ["Night-Time", "Urban", "Dystopian"], bpm: 98, key: "D", mode: "Dorian", vocalType: "Spoken word"),
+        hybridPreset("Industrial Nightclub Funk", ["Industrial Nightclub Funk", "Industrial Funk", "Machine Funk"], ["Urban", "Energetic", "Night-Time"], bpm: 122, key: "F# / Gb", mode: "Phrygian", vocalType: "Female lead"),
+        hybridPreset("Desert Funk Caravan", ["Desert Funk Caravan", "Psychedelic Funk", "Middle Eastern Funk"], ["Rural", "Mystical", "Summer"], bpm: 96, key: "A", mode: "Phrygian dominant", vocalType: "Male lead"),
+        hybridPreset("Japanese City Pop Funk", ["Japanese City Pop Funk", "City Pop Funk", "Japanese Jazz Funk"], ["Night-Time", "Urban", "Romantic"], bpm: 112, key: "C", mode: "Lydian", vocalType: "Female lead"),
+        hybridPreset("Midnight Lowrider Funk", ["Midnight Lowrider Funk", "Lowrider Funk", "Smooth G-Funk"], ["Night-Time", "Urban", "Seductive"], bpm: 86, key: "B", mode: "Dorian", vocalType: "Male lead"),
+        hybridPreset("Afro-Futurist Funk", ["Afro-Futurist Funk", "Afrobeat Funk", "Future Funk"], ["Futuristic", "Celebration", "Cosmic"], bpm: 116, key: "E", mode: "Mixolydian", vocalType: "Choir"),
+        hybridPreset("Funk Noir", ["Funk Noir", "Detective Funk", "Dark Funk"], ["Night-Time", "Mystical", "Urban"], bpm: 92, key: "D# / Eb", mode: "Aeolian / natural minor", vocalType: "Spoken word"),
+        hybridPreset("Dub Funk Odyssey", ["Dub Funk Odyssey", "Dub Funk", "Space Dub"], ["Cosmic", "Dreamlike", "Oceanic"], bpm: 78, key: "G", mode: "Dorian", vocalType: "Instrumental"),
+        hybridPreset("Vintage Detective Funk", ["Vintage Detective Funk", "Detective Funk", "Library Funk"], ["Urban", "Noir", "Suspenseful"], bpm: 102, key: "A", mode: "Harmonic minor", vocalType: "Instrumental")
     ]
 
     private static func hybridPreset(_ name: String, _ genres: [String], _ moods: [String], bpm: Double, key: String, mode: String, vocalType: String) -> PromptPreset {
