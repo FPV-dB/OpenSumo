@@ -3,6 +3,11 @@ import Foundation
 struct PromptGenerator {
     func generate(from preset: PromptPreset, variant: Int = 0) -> String {
         var parts: [String] = []
+        let frontLoad = preset.frontLoadText.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if preset.frontLoadEnabled, !frontLoad.isEmpty {
+            parts.append(frontLoad)
+        }
 
         parts.append("\(Int(preset.bpm.rounded())) BPM")
         parts.append(preset.key)

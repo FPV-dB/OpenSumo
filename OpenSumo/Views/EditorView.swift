@@ -124,6 +124,17 @@ struct EditorView: View {
             }
             .pickerStyle(.segmented)
 
+            Toggle("Front-load important prompt phrase", isOn: $viewModel.currentPreset.frontLoadEnabled)
+            TextField(
+                "Front-loaded phrase",
+                text: $viewModel.currentPreset.frontLoadText,
+                prompt: Text("Huge cathartic chorus first, intimate whispered verse second")
+            )
+            .disabled(!viewModel.currentPreset.frontLoadEnabled)
+            Text("When enabled, this phrase is placed at the very front of the generated prompt so the most important direction gets priority.")
+                .font(.caption)
+                .foregroundStyle(AppTheme.secondaryText)
+
             TextField("Avoid tags", text: $viewModel.currentPreset.avoidTags, prompt: Text("muddy bass, off-key vocals, spoken intro"))
             Toggle("Artist-name-safe mode", isOn: $viewModel.currentPreset.artistNameSafeMode)
             VStack(alignment: .leading, spacing: 8) {

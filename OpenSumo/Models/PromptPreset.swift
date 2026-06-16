@@ -22,6 +22,8 @@ struct PromptPreset: Identifiable, Codable, Equatable {
     var effects: [String]
     var arrangementSections: [String]
     var detailLevel: PromptDetailLevel
+    var frontLoadEnabled: Bool
+    var frontLoadText: String
     var avoidTags: String
     var customNotes: String
     var artistNameSafeMode: Bool
@@ -49,6 +51,8 @@ struct PromptPreset: Identifiable, Codable, Equatable {
         effects: [String] = [],
         arrangementSections: [String] = ["Intro", "Verse", "Chorus", "Outro"],
         detailLevel: PromptDetailLevel = .detailed,
+        frontLoadEnabled: Bool = false,
+        frontLoadText: String = "",
         avoidTags: String = "",
         customNotes: String = "",
         artistNameSafeMode: Bool = true,
@@ -75,10 +79,75 @@ struct PromptPreset: Identifiable, Codable, Equatable {
         self.effects = effects
         self.arrangementSections = arrangementSections
         self.detailLevel = detailLevel
+        self.frontLoadEnabled = frontLoadEnabled
+        self.frontLoadText = frontLoadText
         self.avoidTags = avoidTags
         self.customNotes = customNotes
         self.artistNameSafeMode = artistNameSafeMode
         self.generatedPrompt = generatedPrompt
+    }
+}
+
+extension PromptPreset {
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case genres
+        case moods
+        case bpm
+        case key
+        case timeSignature
+        case vocalType
+        case vocalStyles
+        case vocalDistance
+        case vocalIntensity
+        case instruments
+        case reverbType
+        case reverbAmount
+        case delayType
+        case saturationType
+        case stereoWidth
+        case dynamics
+        case effects
+        case arrangementSections
+        case detailLevel
+        case frontLoadEnabled
+        case frontLoadText
+        case avoidTags
+        case customNotes
+        case artistNameSafeMode
+        case generatedPrompt
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        genres = try container.decodeIfPresent([String].self, forKey: .genres) ?? []
+        moods = try container.decodeIfPresent([String].self, forKey: .moods) ?? []
+        bpm = try container.decodeIfPresent(Double.self, forKey: .bpm) ?? 92
+        key = try container.decodeIfPresent(String.self, forKey: .key) ?? "B minor"
+        timeSignature = try container.decodeIfPresent(String.self, forKey: .timeSignature) ?? "4/4"
+        vocalType = try container.decodeIfPresent(String.self, forKey: .vocalType) ?? "Female lead"
+        vocalStyles = try container.decodeIfPresent([String].self, forKey: .vocalStyles) ?? []
+        vocalDistance = try container.decodeIfPresent(Double.self, forKey: .vocalDistance) ?? 0.25
+        vocalIntensity = try container.decodeIfPresent(Double.self, forKey: .vocalIntensity) ?? 0.55
+        instruments = try container.decodeIfPresent([String].self, forKey: .instruments) ?? []
+        reverbType = try container.decodeIfPresent(String.self, forKey: .reverbType) ?? "hall"
+        reverbAmount = try container.decodeIfPresent(Double.self, forKey: .reverbAmount) ?? 0.55
+        delayType = try container.decodeIfPresent(String.self, forKey: .delayType) ?? "none"
+        saturationType = try container.decodeIfPresent(String.self, forKey: .saturationType) ?? "tape warmth"
+        stereoWidth = try container.decodeIfPresent(Double.self, forKey: .stereoWidth) ?? 0.62
+        dynamics = try container.decodeIfPresent(String.self, forKey: .dynamics) ?? "balanced"
+        effects = try container.decodeIfPresent([String].self, forKey: .effects) ?? []
+        arrangementSections = try container.decodeIfPresent([String].self, forKey: .arrangementSections) ?? ["Intro", "Verse", "Chorus", "Outro"]
+        detailLevel = try container.decodeIfPresent(PromptDetailLevel.self, forKey: .detailLevel) ?? .detailed
+        frontLoadEnabled = try container.decodeIfPresent(Bool.self, forKey: .frontLoadEnabled) ?? false
+        frontLoadText = try container.decodeIfPresent(String.self, forKey: .frontLoadText) ?? ""
+        avoidTags = try container.decodeIfPresent(String.self, forKey: .avoidTags) ?? ""
+        customNotes = try container.decodeIfPresent(String.self, forKey: .customNotes) ?? ""
+        artistNameSafeMode = try container.decodeIfPresent(Bool.self, forKey: .artistNameSafeMode) ?? true
+        generatedPrompt = try container.decodeIfPresent(String.self, forKey: .generatedPrompt) ?? ""
     }
 }
 
