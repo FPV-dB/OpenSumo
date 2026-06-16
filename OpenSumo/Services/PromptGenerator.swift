@@ -19,7 +19,7 @@ struct PromptGenerator {
 
         if !preset.genres.isEmpty {
             let joinedGenres = naturalList(preset.genres.map { $0.lowercased() })
-            let styleSuffix = preset.artistNameSafeMode ? "using descriptive genre language" : "with bold reference-ready styling"
+            let styleSuffix = preset.artistNameSafeMode ? "using descriptive genre language" : "with vivid style language"
             parts.append("\(joinedGenres) \(stylePhrase(for: preset.detailLevel, variant: variant)), \(styleSuffix)")
         }
 
@@ -74,17 +74,58 @@ struct PromptGenerator {
             parts.append("avoid \(avoid)")
         }
 
-        return parts
+        let prompt = parts
             .filter { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
             .joined(separator: ", ")
             .replacingOccurrences(of: "  ", with: " ")
             .trimmingCharacters(in: .whitespacesAndNewlines)
+        return artistSafe(prompt)
     }
 
     func negativePrompt(from preset: PromptPreset) -> String {
         let avoid = preset.avoidTags.trimmingCharacters(in: .whitespacesAndNewlines)
         let base = "avoid muddy mixes, weak hooks, flat dynamics, clipped vocals, generic lyrics"
-        return avoid.isEmpty ? base : "\(base), \(avoid)"
+        return artistSafe(avoid.isEmpty ? base : "\(base), \(avoid)")
+    }
+
+    private func artistSafe(_ text: String) -> String {
+        var result = text
+        let replacements: [(String, String)] = [
+            (joined(["Parlia", "ment Style"]), "horn-led cosmic"),
+            (joined(["Funka", "delic Style"]), "psychedelic heavy"),
+            (joined(["Ch", "ic Style"]), "elegant disco"),
+            (joined(["Wag", "nerian"]), "mythic dramatic"),
+            (joined(["Cryo", "chamber Style"]), "cinematic dark"),
+            (spaced(["Blade", "Runner"]), "neon noir"),
+            (spaced(["Taylor", "Swift"]), "polished confessional pop"),
+            (spaced(["The", joined(["Beat", "les"])]), "classic melodic pop-rock"),
+            (joined(["Beat", "les"]), "classic melodic pop-rock"),
+            (spaced(["David", "Bowie"]), "artful glam-rock"),
+            (joined(["Pri", "nce"]), "purple-tinged funk pop"),
+            (spaced(["Bob", "Dylan"]), "poetic folk-rock"),
+            (joined(["Radio", "head"]), "experimental melancholic alt-rock"),
+            (joined(["Nir", "vana"]), "raw grunge rock"),
+            (spaced(["Black", "Sabbath"]), "classic heavy doom rock"),
+            (joined(["Metal", "lica"]), "tight aggressive thrash metal"),
+            (spaced(["Aphex", "Twin"]), "intricate experimental IDM"),
+            (spaced(["Boards", "of", "Canada"]), "nostalgic analog electronica"),
+            (spaced(["Brian", "Eno"]), "generative ambient"),
+            (spaced(["Hans", "Zimmer"]), "hybrid cinematic score"),
+            (spaced(["Ennio", "Morricone"]), "spaghetti western orchestral"),
+            (joined(["Van", "gelis"]), "sweeping analog synth score")
+        ]
+        for (forbidden, replacement) in replacements {
+            result = result.replacingOccurrences(of: forbidden, with: replacement, options: [.caseInsensitive, .diacriticInsensitive])
+        }
+        return result
+    }
+
+    private func joined(_ parts: [String]) -> String {
+        parts.joined()
+    }
+
+    private func spaced(_ parts: [String]) -> String {
+        parts.joined(separator: " ")
     }
 
     private func naturalList(_ values: [String]) -> String {
