@@ -29,11 +29,17 @@ final class StyleTagStore {
 
         var tags: [StyleTag] = []
         while sqlite3_step(statement) == SQLITE_ROW {
-            let category = String(cString: sqlite3_column_text(statement, 0))
+            let category = StyleTagCategoryDisplay.normalized(String(cString: sqlite3_column_text(statement, 0)))
             let name = String(cString: sqlite3_column_text(statement, 1))
             tags.append(StyleTag(category: category, name: name))
         }
-        return tags.isEmpty ? StyleTagCatalog.allTags : tags
+        let uniqueTags = Array(Set(tags)).sorted {
+            if $0.category == $1.category {
+                return $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending
+            }
+            return $0.category.localizedCaseInsensitiveCompare($1.category) == .orderedAscending
+        }
+        return uniqueTags.isEmpty ? StyleTagCatalog.allTags : uniqueTags
     }
 
     private func open() throws {
@@ -60,7 +66,7 @@ final class StyleTagStore {
     private func seed() throws {
         for (categoryIndex, entry) in StyleTagCatalog.categories.enumerated() {
             for name in entry.1 {
-                try insert(category: entry.0, name: name, categoryOrder: categoryIndex)
+                try insert(category: StyleTagCategoryDisplay.normalized(entry.0), name: name, categoryOrder: categoryIndex)
             }
         }
     }

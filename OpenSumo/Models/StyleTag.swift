@@ -6,6 +6,15 @@ struct StyleTag: Identifiable, Hashable, Sendable {
     var id: String { "\(category)::\(name)" }
 }
 
+enum StyleTagCategoryDisplay {
+    static func normalized(_ category: String) -> String {
+        if category.hasPrefix("Folk & Ethnic") || category == "Folk & Acoustic" || category == "World" || category == "World Expanded" {
+            return "Folk & Ethnic"
+        }
+        return category
+    }
+}
+
 enum StyleTagCatalog {
     static var categories: [(String, [String])] {
         curatedCategories + [
@@ -134,8 +143,14 @@ enum StyleTagCatalog {
     ]
 
     static var allTags: [StyleTag] {
-        categories.flatMap { category, names in
-            names.map { StyleTag(category: category, name: $0) }
+        let tags = categories.flatMap { category, names in
+            names.map { StyleTag(category: StyleTagCategoryDisplay.normalized(category), name: $0) }
+        }
+        return Array(Set(tags)).sorted {
+            if $0.category == $1.category {
+                return $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending
+            }
+            return $0.category.localizedCaseInsensitiveCompare($1.category) == .orderedAscending
         }
     }
 }
